@@ -194,7 +194,7 @@
                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.3)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] no-underline cursor-pointer">
                     
                     <div class="mb-4 flex justify-center">
-                        <span class="material-symbols-rounded text-brand-googleBlue" style="font-size: 84px;">
+                        <span class="material-symbols-rounded text-brand-copper" style="font-size: 84px;">
                             document_scanner
                         </span>
                     </div>
@@ -427,8 +427,8 @@
             if (progress <= zoomStart) {
                 const p = progress / zoomStart;
                 const eased = p * p * (3 - 2 * p);
-                scaleVal = 1 + eased * 0.12;       
-                translateY = -eased * 20;          
+                scaleVal = 1 + eased * 0.12;        
+                translateY = -eased * 20;           
                 opacityVal = 1;
             } else if (progress < zoomEnd) {
                 const p = (progress - zoomStart) / (zoomEnd - zoomStart);
