@@ -67,7 +67,7 @@
         html {
             scrollbar-width: thin;
             scrollbar-color: #555555 transparent;
-            scroll-behavior: smooth; /* Essential for the auto-scroll */
+            scroll-behavior: auto; /* JS handles smooth scroll */
             background-color: #000000;
         }
 
@@ -100,8 +100,8 @@
             border-radius: 50%; filter: blur(60px); transform: translate(-50%, -50%); pointer-events: none; z-index: 0; opacity: 0;
         }
 
-        /* Adjusted margin-top slightly to accommodate smoother transition */
-        #products { margin-top: -100vh; opacity: 0; pointer-events: none; transition: opacity 0.1s linear; }
+        /* UPDATED: Increased margin slightly to -80vh to lower the physical start position */
+        #products { margin-top: -80vh; opacity: 0; pointer-events: none; transition: opacity 0.1s linear; }
         #products.active { pointer-events: auto; }
         
         .material-symbols-rounded {
@@ -140,7 +140,7 @@
         </div>
     </nav>
 
-    <div id="intro-wrapper" class="relative" style="height: 150vh;">
+    <div id="intro-wrapper" class="relative" style="height: 180vh;">
         <div class="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
             <div class="absolute inset-0 bg-nouveau-pattern opacity-5 pointer-events-none"></div>
             <div id="intro-scale-wrapper" class="relative z-10 text-center px-4 max-w-4xl mx-auto origin-center">
@@ -267,43 +267,54 @@
         const bgLightCaster = document.getElementById('bg-light-caster');
         const productsSection = document.getElementById('products');
         
-        // Use ID for precise targeting
         const productsHeader = document.getElementById('products-header');
         const productCard = document.querySelector('#products a.group');
 
-        // --- 1. SMART AUTO-SCROLL LOGIC (Corrected) ---
+        // --- 1. SMART AUTO-SCROLL LOGIC (0.75x SPEED) ---
         let lastScrollTop = 0;
         let isAutoScrolling = false;
+        
+        function smoothScrollTo(targetPosition, duration) {
+            const startPosition = window.scrollY;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const progress = Math.min(timeElapsed / duration, 1);
+                
+                const ease = progress < 0.5 
+                    ? 4 * progress * progress * progress 
+                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+                window.scrollTo(0, startPosition + (distance * ease));
+
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                } else {
+                    isAutoScrolling = false;
+                }
+            }
+
+            requestAnimationFrame(animation);
+        }
         
         window.addEventListener('scroll', () => {
             const currentScroll = window.scrollY;
             const threshold = 10; 
             const triggerZoneLimit = 300; 
             
-            // LOGIC: Scroll only if moving DOWN, inside trigger zone, and not already scrolling
             if (currentScroll > lastScrollTop && !isAutoScrolling) {
                 if (currentScroll > threshold && currentScroll < triggerZoneLimit) {
-                    
-                    // CALCULATE EXACT DESTINATION
-                    // We want the 'Products' text to be at the top, allowing for the fixed navbar (80px)
-                    // plus a little breathing room (40px).
-                    // getBoundingClientRect().top is relative to viewport, so we add currentScroll to get absolute doc position.
                     const navHeight = 80;
                     const breathingRoom = 40;
                     const elementPosition = productsHeader.getBoundingClientRect().top + window.scrollY;
                     const destination = elementPosition - navHeight - breathingRoom;
 
                     isAutoScrolling = true;
-                    
-                    window.scrollTo({
-                        top: destination,
-                        behavior: 'smooth'
-                    });
-
-                    // Unlock after animation finishes
-                    setTimeout(() => {
-                        isAutoScrolling = false;
-                    }, 1200); 
+                    // Duration: 1600ms (Approx 0.75x speed of standard smooth scroll)
+                    smoothScrollTo(destination, 1600); 
                 }
             }
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
@@ -334,7 +345,7 @@
             }
 
             waves = [
-                { y: baseY,     length: 0.003, amplitude: 60, speed: 0.007, offset: 0, color: 'rgba(217, 119, 54, 0.15)' },
+                { y: baseY,      length: 0.003, amplitude: 60, speed: 0.007, offset: 0, color: 'rgba(217, 119, 54, 0.15)' },
                 { y: baseY + 25, length: 0.005, amplitude: 40, speed: 0.012, offset: 2, color: 'rgba(217, 119, 54, 0.3)' },
                 { y: baseY + 45, length: 0.007, amplitude: 25, speed: 0.02,  offset: 4, color: 'rgba(255, 255, 255, 0.05)' }
             ];
@@ -389,7 +400,7 @@
             const totalDistance = (introWrapper.offsetHeight - window.innerHeight) || 1;
             const progress = Math.min(Math.max(scrollY / totalDistance, 0), 1);
 
-            // 1. Lighting (Smoother)
+            // 1. Lighting
             const lightEnd = 0.35;
             if (progress <= lightEnd) {
                 const lp = progress / lightEnd;
@@ -405,9 +416,11 @@
                 bgLightCaster.style.opacity = 0.6 * (1 - fadeOut);
             }
 
-            // 2. Zoom & Fade (Visuals)
+            // 2. Zoom & Fade (UPDATED FOR BUFFER)
             const zoomStart = 0.1; 
-            const zoomEnd = 0.9;
+            // CHANGED: Ends at 0.65 instead of 0.9. 
+            // This ensures the text disappears much earlier.
+            const zoomEnd = 0.65; 
 
             let scaleVal = 1; let translateY = 0; let opacityVal = 1;
 
@@ -426,14 +439,16 @@
             } else {
                 scaleVal = 6;
                 translateY = -270;
-                opacityVal = 0;
+                opacityVal = 0; // Text is fully gone here
             }
             
             introScaleWrapper.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scaleVal})`;
             introScaleWrapper.style.opacity = opacityVal;
 
-            // 3. Products Transition
-            const transitionStart = 0.6;
+            // 3. Products Transition (UPDATED FOR BUFFER)
+            // CHANGED: Starts at 0.8 instead of 0.6.
+            // Result: Between 0.65 (Zoom End) and 0.8 (Product Start), screen is clean.
+            const transitionStart = 0.8;
             const transitionEnd = 1.0;
 
             if (progress < transitionStart) {
