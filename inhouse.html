@@ -67,8 +67,7 @@
         html {
             scrollbar-width: thin;
             scrollbar-color: #555555 transparent;
-            /* CRITICAL: Enables native smooth scrolling for the auto-scroll JS */
-            scroll-behavior: smooth;
+            scroll-behavior: smooth; /* Essential for the auto-scroll */
             background-color: #000000;
         }
 
@@ -88,8 +87,7 @@
         /* GPU Acceleration for smoother animation */
         #intro-scale-wrapper {
             will-change: transform, opacity;
-            /* Use translate3d to force hardware acceleration */
-            transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0); /* Force Hardware Acceleration */
             backface-visibility: hidden;
         }
 
@@ -102,6 +100,7 @@
             border-radius: 50%; filter: blur(60px); transform: translate(-50%, -50%); pointer-events: none; z-index: 0; opacity: 0;
         }
 
+        /* Adjusted margin-top slightly to accommodate smoother transition */
         #products { margin-top: -100vh; opacity: 0; pointer-events: none; transition: opacity 0.1s linear; }
         #products.active { pointer-events: auto; }
         
@@ -184,7 +183,7 @@
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             
-            <div class="flex items-center justify-between mb-16">
+            <div id="products-header" class="flex items-center justify-between mb-16">
                 <h2 class="font-logo text-4xl text-white tracking-wide">Products</h2>
                 <div class="h-px bg-white flex-grow ml-8"></div>
             </div>
@@ -268,33 +267,46 @@
         const bgLightCaster = document.getElementById('bg-light-caster');
         const productsSection = document.getElementById('products');
         
+        // Use ID for precise targeting
+        const productsHeader = document.getElementById('products-header');
         const productCard = document.querySelector('#products a.group');
 
-        // --- 1. AUTO-SCROLL LOGIC ---
-        // This ensures smoothness by taking control away from the user's manual 
-        // scroll speed and letting the browser smoothly interpolate to the destination.
+        // --- 1. SMART AUTO-SCROLL LOGIC (Corrected) ---
+        let lastScrollTop = 0;
         let isAutoScrolling = false;
         
         window.addEventListener('scroll', () => {
-            const scrollTriggerThreshold = 5; // Pixels
-            const destination = introWrapper.offsetHeight; // The top of the products section
+            const currentScroll = window.scrollY;
+            const threshold = 10; 
+            const triggerZoneLimit = 300; 
+            
+            // LOGIC: Scroll only if moving DOWN, inside trigger zone, and not already scrolling
+            if (currentScroll > lastScrollTop && !isAutoScrolling) {
+                if (currentScroll > threshold && currentScroll < triggerZoneLimit) {
+                    
+                    // CALCULATE EXACT DESTINATION
+                    // We want the 'Products' text to be at the top, allowing for the fixed navbar (80px)
+                    // plus a little breathing room (40px).
+                    // getBoundingClientRect().top is relative to viewport, so we add currentScroll to get absolute doc position.
+                    const navHeight = 80;
+                    const breathingRoom = 40;
+                    const elementPosition = productsHeader.getBoundingClientRect().top + window.scrollY;
+                    const destination = elementPosition - navHeight - breathingRoom;
 
-            // If user scrolls down past threshold, is not yet at the destination, and logic hasn't fired yet
-            if (!isAutoScrolling && window.scrollY > scrollTriggerThreshold && window.scrollY < (destination - 50)) {
-                isAutoScrolling = true;
-                
-                // Trigger native smooth scroll
-                window.scrollTo({
-                    top: destination,
-                    behavior: 'smooth'
-                });
+                    isAutoScrolling = true;
+                    
+                    window.scrollTo({
+                        top: destination,
+                        behavior: 'smooth'
+                    });
 
-                // Reset the lock after a timeout (approximate animation duration)
-                // allowing user to scroll back up if they really want to.
-                setTimeout(() => {
-                    isAutoScrolling = false;
-                }, 1000); 
+                    // Unlock after animation finishes
+                    setTimeout(() => {
+                        isAutoScrolling = false;
+                    }, 1200); 
+                }
             }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         });
 
         // --- FLUID WAVE ANIMATION SETUP ---
@@ -371,7 +383,7 @@
             }, 100);
         });
 
-        // --- SCROLL ANIMATION LOGIC (VISUALS) ---
+        // --- SCROLL ANIMATION VISUALS ---
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
             const totalDistance = (introWrapper.offsetHeight - window.innerHeight) || 1;
@@ -393,7 +405,7 @@
                 bgLightCaster.style.opacity = 0.6 * (1 - fadeOut);
             }
 
-            // 2. Zoom & Fade (Optimized for Mobile/Smoothness)
+            // 2. Zoom & Fade (Visuals)
             const zoomStart = 0.1; 
             const zoomEnd = 0.9;
 
@@ -407,18 +419,9 @@
                 opacityVal = 1;
             } else if (progress < zoomEnd) {
                 const p = (progress - zoomStart) / (zoomEnd - zoomStart);
-                
-                // Use Quadratic ease (p*p) for smoother start/stop feel
-                const eased = p * p;
-                
-                // Cap the max scale lower (e.g., 6x) so mobile browsers don't struggle to repaint
-                // a massive texture. It will fade out before hitting max anyway.
+                const eased = p * p; // Quadratic
                 scaleVal = 1.12 + eased * 5; 
-                
-                // Use translate3d for GPU acceleration
                 translateY = -20 - eased * 250;
-                
-                // Fade out faster so the heavy scaling element disappears sooner
                 opacityVal = 1 - eased;
             } else {
                 scaleVal = 6;
@@ -426,7 +429,6 @@
                 opacityVal = 0;
             }
             
-            // Apply Transform using translate3d for better performance
             introScaleWrapper.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scaleVal})`;
             introScaleWrapper.style.opacity = opacityVal;
 
