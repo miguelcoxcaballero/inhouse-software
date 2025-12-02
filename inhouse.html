@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inhouse Software</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Inter:wght@400;700&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#000000',
+                            copper: '#d97736', 
+                            cream: '#f5f5f0',
+                            googleBlue: '#0b57d0',
+                            googleDark: '#1f1f1f',
+                            googleGray: '#444746',
+                            typeTestBg: '#1E1E1E',
+                            typeTestGreen: '#66BB6A',
+                            poliBg: '#0b0f14',
+                            poliText: '#e8ecf1'
+                        }
+                    },
+                    fontFamily: {
+                        'logo': ['"Comfortaa"', 'cursive'],
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'body': ['"Lato"', 'sans-serif'],
+                        'montserrat': ['"Montserrat"', 'sans-serif'],
+                        'roboto': ['"Roboto"', 'sans-serif'],
+                        'inter': ['"Inter"', 'sans-serif'],
+                        'mono': ['"Roboto Mono"', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'nouveau-pattern': "url('data:image/svg+xml,%3Csvg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cpath d=\"M20 20.125c0-1.25.75-2.25 2-2.25s2 1 2 2.25-.75 2.25-2 2.25-2-1-2-2.25zM10 30.125c0-1.25.75-2.25 2-2.25s2 1 2 2.25-.75 2.25-2 2.25-2-1-2-2.25zM30 30.125c0-1.25.75-2.25 2-2.25s2 1 2 2.25-.75 2.25-2 2.25-2-1-2-2.25z\" fill=\"%23d97736\" fill-opacity=\"0.03\" fill-rule=\"evenodd\"/%3E%3C/svg%3E')"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- CUSTOM SCROLLBAR START --- */
+        ::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+        ::-webkit-scrollbar { width: 14px; height: 14px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 2px #555555; 
+            border-radius: 20px;
+            border: 4px solid transparent;
+            background-clip: content-box;
+        }
+        ::-webkit-scrollbar-thumb:hover { box-shadow: inset 0 0 0 2px #888888; }
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: #555555 transparent;
+            scroll-behavior: smooth;
+            background-color: #000000;
+        }
+        /* --- CUSTOM SCROLLBAR END --- */
+
+        body { background-color: #000000; }
+
+        /* Video-Like Canvas Layer */
+        #wave-canvas {
+            position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0; pointer-events: none; transition: opacity 1s ease-out;
+        }
+
+        /* Texture Layer */
+        .texture-layer {
+            position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            opacity: 0; pointer-events: none; z-index: -1; mix-blend-mode: overlay;
+        }
+
+        .reveal-element { opacity: 0; transition: opacity 1.5s ease-out; }
+        .reveal-element.visible { opacity: 1; }
+
+        #bg-light-caster {
+            position: absolute; top: 50%; left: 50%; width: 250px; height: 250px;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(217,119,54,0.1) 40%, transparent 70%);
+            border-radius: 50%; filter: blur(60px); transform: translate(-50%, -50%); pointer-events: none; z-index: 0; opacity: 0;
+        }
+
+        #products { margin-top: -100vh; opacity: 0; pointer-events: none; transition: opacity 0.1s linear; }
+        #products.active { pointer-events: auto; }
+        
+        .material-symbols-rounded {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+        }
+
+        /* --- POLITRAUMAT RAINBOW ANIMATION --- */
+        @keyframes rainbowSlide {
+            0% { background-position: 0% 50% }
+            100% { background-position: 200% 50% }
+        }
+        
+        .poli-trauma-text {
+            background: linear-gradient(90deg,#ff0040,#ff7a00,#ffd400,#00d17a,#0096ff,#9b5cff,#ff3cd1);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbowSlide 6s linear infinite;
+        }
+    </style>
+</head>
+<body class="text-brand-cream font-body overflow-x-hidden selection:bg-brand-copper selection:text-white">
+
+    <div class="texture-layer"></div>
+
+    <nav id="main-nav" class="fixed w-full z-50 bg-brand-black/90 backdrop-blur-md border-b border-brand-copper/30 opacity-0 transition-opacity duration-700 pointer-events-none">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <svg class="h-8 w-10 text-brand-copper" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="4">
+                        <path d="M5 55 L50 10 L95 55" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="font-logo font-bold text-xl tracking-tight text-white lowercase ml-1">inhouse software</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="intro-wrapper" class="relative" style="height: 200vh;">
+        <div class="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-nouveau-pattern opacity-5 pointer-events-none"></div>
+            <div id="intro-scale-wrapper" class="relative z-10 text-center px-4 max-w-4xl mx-auto origin-center">
+                <div id="bg-light-caster"></div>
+                <div class="mx-auto w-48 h-32 mb-1 relative overflow-visible flex items-center justify-center z-10">
+                    <svg viewBox="0 0 100 60" class="w-full h-full drop-shadow-[0_0_20px_rgba(217,119,54,0.15)]">
+                        <defs>
+                            <linearGradient id="soft-shine-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="black" />
+                                <stop offset="30%" stop-color="#444" />
+                                <stop offset="50%" stop-color="white" />
+                                <stop offset="70%" stop-color="#444" />
+                                <stop offset="100%" stop-color="black" />
+                            </linearGradient>
+                            <mask id="shine-mask">
+                                <rect x="-50" y="-50" width="200" height="200" fill="black" />
+                                <rect id="shine-mover" x="-150" y="-50" width="100" height="200" fill="url(#soft-shine-gradient)" transform="skewX(-25)"></rect>
+                            </mask>
+                        </defs>
+                        <path d="M5 55 L50 10 L95 55" stroke="#d97736" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 55 L50 10 L95 55" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" mask="url(#shine-mask)" opacity="1"/>
+                    </svg>
+                </div>
+                <div id="hero-content" class="reveal-element z-10 relative">
+                    <h1 class="font-logo font-bold text-5xl md:text-7xl mb-12 text-white tracking-tighter leading-none lowercase">
+                        <span class="block">inhouse</span>
+                        <span class="block">software</span>
+                    </h1>
+                    <div id="scroll-prompt" class="text-brand-cream/30 mt-32 transition-opacity duration-500">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="products" class="py-32 relative overflow-hidden reveal-section z-20 min-h-[80vh] flex flex-col justify-center">
+        
+        <canvas id="wave-canvas"></canvas>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            
+            <div class="flex items-center justify-between mb-16">
+                <h2 class="font-logo text-4xl text-white tracking-wide">Products</h2>
+                <div class="h-px bg-white flex-grow ml-8"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center justify-items-center">
+
+                <a href="https://raw.githack.com/miguelcoxcaballero/scan/main/index.html" target="_blank" 
+                   class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[360px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.3)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] no-underline cursor-pointer">
+                    
+                    <div class="mb-6 flex justify-center">
+                        <span class="material-symbols-rounded text-brand-googleBlue" style="font-size: 84px;">
+                            document_scanner
+                        </span>
+                    </div>
+                    <h3 class="font-roboto text-[44px] leading-tight text-brand-googleDark font-normal tracking-tight mb-4">
+                        Scanner
+                    </h3>
+                    <p class="font-roboto text-xl text-brand-googleGray font-normal">
+                        Digitize, Crop & Export
+                    </p>
+                </a>
+
+                <a href="https://raw.githack.com/miguelcoxcaballero/TypeTest/main/TypeTest.html" target="_blank" 
+                   class="group relative flex flex-col items-center justify-center bg-brand-typeTestBg w-full max-w-[320px] h-[360px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.8)] shadow-[0_8px_20px_rgba(0,0,0,0.6)] border border-[#333] hover:border-brand-typeTestGreen/50 no-underline cursor-pointer">
+                    
+                    <div class="mb-6 flex justify-center">
+                        <span class="material-symbols-rounded text-brand-typeTestGreen" style="font-size: 84px;">
+                            keyboard
+                        </span>
+                    </div>
+                    <h3 class="font-inter text-[44px] leading-tight text-[#E0E0E0] font-bold tracking-tight mb-4">
+                        TypeTest
+                    </h3>
+                    <p class="font-mono text-xl text-[#E0E0E0]/80 font-normal">
+                        Dual Mode Carousel
+                    </p>
+                </a>
+
+                <a href="https://raw.githack.com/miguelcoxcaballero/politraumat/main/politraumat.html" target="_blank" 
+                   class="group relative flex flex-col items-center justify-center bg-brand-poliBg w-full max-w-[320px] h-[360px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-5px_rgba(0,0,0,0.9)] shadow-[0_10px_30px_rgba(0,0,0,0.35)] border border-[#223046] hover:border-[#2a3a4f] no-underline cursor-pointer">
+                    
+                    <div class="mb-6 flex justify-center">
+                        <span class="material-symbols-rounded text-white" style="font-size: 84px;">
+                            style
+                        </span>
+                    </div>
+                    
+                    <h3 class="text-[36px] leading-tight tracking-tight mb-4 font-extrabold flex items-center justify-center gap-1">
+                        <span class="text-white tracking-[0.14px]">poli</span>
+                        <span class="poli-trauma-text tracking-[0.2px]">[traumaT]</span>
+                    </h3>
+                    
+                    <p class="font-body text-xl text-brand-poliText/70 font-normal">
+                        Anki Cram Mobile
+                    </p>
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-brand-black py-12 relative z-20 reveal-section w-full border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                 <svg class="h-5 w-8 text-brand-copper" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="4">
+                    <path d="M5 55 L50 10 L95 55" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="font-body text-xs text-brand-cream/40 uppercase tracking-widest">Inhouse Software &copy; 2025</span>
+            </div>
+            <div class="flex gap-10 items-center">
+                <a href="https://instagram.com/miguelcoxcaballero" target="_blank" class="group flex items-center gap-2 text-brand-cream/40 hover:text-brand-copper transition-colors text-xs uppercase tracking-widest">
+                    <i class="fab fa-instagram text-lg group-hover:scale-110 transition-transform"></i> Instagram
+                </a>
+                <a href="https://github.com/miguelcoxcaballero" target="_blank" class="group flex items-center gap-2 text-brand-cream/40 hover:text-brand-copper transition-colors text-xs uppercase tracking-widest">
+                    <i class="fab fa-github text-lg group-hover:scale-110 transition-transform"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('main-nav');
+        const heroContent = document.getElementById('hero-content');
+        const scrollPrompt = document.getElementById('scroll-prompt');
+        const shineMover = document.getElementById('shine-mover');
+        const textureLayer = document.querySelector('.texture-layer');
+        const waveCanvas = document.getElementById('wave-canvas');
+        const introScaleWrapper = document.getElementById('intro-scale-wrapper');
+        const introWrapper = document.getElementById('intro-wrapper');
+        const bgLightCaster = document.getElementById('bg-light-caster');
+        const productsSection = document.getElementById('products');
+        
+        const productCard = document.querySelector('#products a.group');
+
+        // --- FLUID WAVE ANIMATION SETUP ---
+        const ctx = waveCanvas.getContext('2d');
+        let width, height;
+        let waves = [];
+
+        function initWaves() {
+            if (!productsSection) return;
+
+            const sectionRect = productsSection.getBoundingClientRect();
+            width = sectionRect.width;
+            height = sectionRect.height || window.innerHeight;
+
+            waveCanvas.width = width;
+            waveCanvas.height = height;
+
+            let baseY;
+            if (productCard) {
+                const cardRect = productCard.getBoundingClientRect();
+                const relativeBottom = cardRect.bottom - sectionRect.top;
+                baseY = Math.min(relativeBottom + 60, height * 0.95);
+            } else {
+                baseY = height * 0.75;
+            }
+
+            waves = [
+                { y: baseY,     length: 0.003, amplitude: 60, speed: 0.007, offset: 0, color: 'rgba(217, 119, 54, 0.15)' },
+                { y: baseY + 25, length: 0.005, amplitude: 40, speed: 0.012, offset: 2, color: 'rgba(217, 119, 54, 0.3)' },
+                { y: baseY + 45, length: 0.007, amplitude: 25, speed: 0.02,  offset: 4, color: 'rgba(255, 255, 255, 0.05)' }
+            ];
+        }
+
+        function drawWaves() {
+            if (!width || !height) return;
+
+            ctx.clearRect(0, 0, width, height);
+
+            waves.forEach(wave => {
+                ctx.beginPath();
+                ctx.moveTo(0, height);
+                ctx.lineTo(0, wave.y);
+
+                for (let x = 0; x < width; x++) {
+                    const y = wave.y + Math.sin(x * wave.length + wave.offset) * wave.amplitude;
+                    ctx.lineTo(x, y);
+                }
+
+                ctx.lineTo(width, height);
+                ctx.closePath();
+                
+                const gradient = ctx.createLinearGradient(0, 0, 0, height);
+                gradient.addColorStop(0, "rgba(0,0,0,0)");
+                gradient.addColorStop(0.5, wave.color);
+                gradient.addColorStop(1, "rgba(0,0,0,0.8)");
+                
+                ctx.fillStyle = gradient;
+                ctx.fill();
+
+                wave.offset += wave.speed;
+            });
+
+            requestAnimationFrame(drawWaves);
+        }
+
+        initWaves();
+        drawWaves();
+        window.addEventListener('resize', initWaves);
+
+        // --- INTRO REVEAL ---
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                heroContent.classList.add('visible');
+            }, 100);
+        });
+
+        // --- SCROLL INTERACTION LOGIC ---
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const totalDistance = (introWrapper.offsetHeight - window.innerHeight) || 1;
+            const progress = Math.min(Math.max(scrollY / totalDistance, 0), 1);
+
+            // 1. Lighting
+            const lightEnd = 0.35;
+            if (progress <= lightEnd) {
+                const lp = progress / lightEnd;
+                const eased = lp * lp * (3 - 2 * lp);
+                const startX = -80; const endX = 80;
+                const currentX = startX + eased * (endX - startX);
+                shineMover.setAttribute('x', currentX);
+                const bgX = -40 + eased * 80;
+                bgLightCaster.style.transform = `translate(calc(-50% + ${bgX}px), -50%)`;
+                bgLightCaster.style.opacity = 0.6 * eased;
+            } else {
+                const fadeOut = Math.min((progress - lightEnd) / 0.25, 1);
+                bgLightCaster.style.opacity = 0.6 * (1 - fadeOut);
+            }
+
+            // 2. Zoom & Fade
+            const zoomStart = 0.25;
+            const zoomEnd = 0.85;
+            let scaleVal = 1; let translateY = 0; let opacityVal = 1;
+
+            if (progress <= zoomStart) {
+                const p = progress / zoomStart;
+                const eased = p * p * (3 - 2 * p);
+                scaleVal = 1 + eased * 0.12;
+                translateY = -eased * 20;
+                opacityVal = 1;
+            } else if (progress < zoomEnd) {
+                const p = (progress - zoomStart) / (zoomEnd - zoomStart);
+                const eased = p * p * p;
+                const easedOpacity = p * p;
+                scaleVal = 1.12 + eased * 10;
+                translateY = -20 - eased * 250;
+                opacityVal = 1 - easedOpacity;
+            } else {
+                scaleVal = 11.12;
+                translateY = -270;
+                opacityVal = 0;
+            }
+            introScaleWrapper.style.transform = `translateY(${translateY}px) scale(${scaleVal})`;
+            introScaleWrapper.style.opacity = opacityVal;
+
+            // 3. Products Transition
+            const transitionStart = 0.6;
+            const transitionEnd = 1.0;
+
+            if (progress < transitionStart) {
+                waveCanvas.style.opacity = '0';
+                textureLayer.style.opacity = '0';
+                productsSection.style.opacity = '0';
+                productsSection.classList.remove('active');
+                nav.classList.remove('opacity-100', 'pointer-events-auto');
+                nav.classList.add('opacity-0', 'pointer-events-none');
+                scrollPrompt.style.opacity = (progress < 0.15) ? '1' : '0';
+            } else {
+                const transProgress = Math.min((progress - transitionStart) / (transitionEnd - transitionStart), 1);
+                waveCanvas.style.opacity = transProgress;
+                textureLayer.style.opacity = transProgress;
+                productsSection.style.opacity = transProgress;
+                if (transProgress > 0.1) productsSection.classList.add('active');
+
+                if (transProgress > 0.4) {
+                    nav.classList.remove('opacity-0', 'pointer-events-none');
+                    nav.classList.add('opacity-100', 'pointer-events-auto');
+                } else {
+                    nav.classList.remove('opacity-100', 'pointer-events-auto');
+                    nav.classList.add('opacity-0', 'pointer-events-none');
+                }
+                scrollPrompt.style.opacity = '0';
+            }
+        });
+    </script>
+</body>
+</html>
