@@ -51,7 +51,7 @@
     </script>
 
     <style>
-        /* --- CUSTOM SCROLLBAR START --- */
+        /* --- CUSTOM SCROLLBAR --- */
         ::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
         ::-webkit-scrollbar { width: 14px; height: 14px; }
         ::-webkit-scrollbar-track { background: transparent; }
@@ -63,13 +63,14 @@
             background-clip: content-box;
         }
         ::-webkit-scrollbar-thumb:hover { box-shadow: inset 0 0 0 2px #888888; }
+        
         html {
             scrollbar-width: thin;
             scrollbar-color: #555555 transparent;
+            /* CRITICAL: Enables native smooth scrolling for the auto-scroll JS */
             scroll-behavior: smooth;
             background-color: #000000;
         }
-        /* --- CUSTOM SCROLLBAR END --- */
 
         body { background-color: #000000; }
 
@@ -82,6 +83,14 @@
         .texture-layer {
             position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
             opacity: 0; pointer-events: none; z-index: -1; mix-blend-mode: overlay;
+        }
+
+        /* GPU Acceleration for smoother animation */
+        #intro-scale-wrapper {
+            will-change: transform, opacity;
+            /* Use translate3d to force hardware acceleration */
+            transform: translate3d(0,0,0);
+            backface-visibility: hidden;
         }
 
         .reveal-element { opacity: 0; transition: opacity 1.5s ease-out; }
@@ -100,7 +109,6 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
         }
 
-        /* --- POLITRAUMAT RAINBOW ANIMATION --- */
         @keyframes rainbowSlide {
             0% { background-position: 0% 50% }
             100% { background-position: 200% 50% }
@@ -184,41 +192,41 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center justify-items-center">
 
                 <a href="https://raw.githack.com/miguelcoxcaballero/scan/main/index.html" target="_blank" 
-                   class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[360px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.3)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] no-underline cursor-pointer">
+                   class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.3)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] no-underline cursor-pointer">
                     
-                    <div class="mb-6 flex justify-center">
+                    <div class="mb-4 flex justify-center">
                         <span class="material-symbols-rounded text-brand-googleBlue" style="font-size: 84px;">
                             document_scanner
                         </span>
                     </div>
-                    <h3 class="font-roboto text-[44px] leading-tight text-brand-googleDark font-normal tracking-tight mb-4">
+                    <h3 class="font-roboto text-[44px] leading-tight text-brand-googleDark font-normal tracking-tight">
                         Scanner
                     </h3>
                 </a>
 
                 <a href="https://raw.githack.com/miguelcoxcaballero/TypeTest/main/TypeTest.html" target="_blank" 
-                   class="group relative flex flex-col items-center justify-center bg-brand-typeTestBg w-full max-w-[320px] h-[360px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.8)] shadow-[0_8px_20px_rgba(0,0,0,0.6)] border border-[#333] hover:border-brand-typeTestGreen/50 no-underline cursor-pointer">
+                   class="group relative flex flex-col items-center justify-center bg-brand-typeTestBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.8)] shadow-[0_8px_20px_rgba(0,0,0,0.6)] border border-[#333] hover:border-brand-typeTestGreen/50 no-underline cursor-pointer">
                     
-                    <div class="mb-6 flex justify-center">
+                    <div class="mb-4 flex justify-center">
                         <span class="material-symbols-rounded text-brand-typeTestGreen" style="font-size: 84px;">
                             keyboard
                         </span>
                     </div>
-                    <h3 class="font-inter text-[44px] leading-tight text-[#E0E0E0] font-bold tracking-tight mb-4">
+                    <h3 class="font-inter text-[44px] leading-tight text-[#E0E0E0] font-bold tracking-tight">
                         TypeTest
                     </h3>
                 </a>
 
                 <a href="https://raw.githack.com/miguelcoxcaballero/politraumat/main/politraumat.html" target="_blank" 
-                   class="group relative flex flex-col items-center justify-center bg-brand-poliBg w-full max-w-[320px] h-[360px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-5px_rgba(0,0,0,0.9)] shadow-[0_10px_30px_rgba(0,0,0,0.35)] border border-[#223046] hover:border-[#2a3a4f] no-underline cursor-pointer">
+                   class="group relative flex flex-col items-center justify-center bg-brand-poliBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-5px_rgba(0,0,0,0.9)] shadow-[0_10px_30px_rgba(0,0,0,0.35)] border border-[#223046] hover:border-[#2a3a4f] no-underline cursor-pointer">
                     
-                    <div class="mb-6 flex justify-center">
+                    <div class="mb-4 flex justify-center">
                         <span class="material-symbols-rounded text-white" style="font-size: 84px;">
                             style
                         </span>
                     </div>
                     
-                    <h3 class="text-[36px] leading-tight tracking-tight mb-4 font-extrabold flex items-center justify-center gap-1">
+                    <h3 class="text-[36px] leading-tight tracking-tight font-extrabold flex items-center justify-center gap-1">
                         <span class="text-white tracking-[0.14px]">poli</span>
                         <span class="poli-trauma-text tracking-[0.2px]">[traumaT]</span>
                     </h3>
@@ -261,6 +269,33 @@
         const productsSection = document.getElementById('products');
         
         const productCard = document.querySelector('#products a.group');
+
+        // --- 1. AUTO-SCROLL LOGIC ---
+        // This ensures smoothness by taking control away from the user's manual 
+        // scroll speed and letting the browser smoothly interpolate to the destination.
+        let isAutoScrolling = false;
+        
+        window.addEventListener('scroll', () => {
+            const scrollTriggerThreshold = 5; // Pixels
+            const destination = introWrapper.offsetHeight; // The top of the products section
+
+            // If user scrolls down past threshold, is not yet at the destination, and logic hasn't fired yet
+            if (!isAutoScrolling && window.scrollY > scrollTriggerThreshold && window.scrollY < (destination - 50)) {
+                isAutoScrolling = true;
+                
+                // Trigger native smooth scroll
+                window.scrollTo({
+                    top: destination,
+                    behavior: 'smooth'
+                });
+
+                // Reset the lock after a timeout (approximate animation duration)
+                // allowing user to scroll back up if they really want to.
+                setTimeout(() => {
+                    isAutoScrolling = false;
+                }, 1000); 
+            }
+        });
 
         // --- FLUID WAVE ANIMATION SETUP ---
         const ctx = waveCanvas.getContext('2d');
@@ -336,13 +371,13 @@
             }, 100);
         });
 
-        // --- SCROLL INTERACTION LOGIC ---
+        // --- SCROLL ANIMATION LOGIC (VISUALS) ---
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
             const totalDistance = (introWrapper.offsetHeight - window.innerHeight) || 1;
             const progress = Math.min(Math.max(scrollY / totalDistance, 0), 1);
 
-            // 1. Lighting
+            // 1. Lighting (Smoother)
             const lightEnd = 0.35;
             if (progress <= lightEnd) {
                 const lp = progress / lightEnd;
@@ -358,9 +393,7 @@
                 bgLightCaster.style.opacity = 0.6 * (1 - fadeOut);
             }
 
-            // 2. Zoom & Fade (UPDATED: Smoother Logic)
-            
-            // Adjusted thresholds to spread the animation out over the shorter scroll distance
+            // 2. Zoom & Fade (Optimized for Mobile/Smoothness)
             const zoomStart = 0.1; 
             const zoomEnd = 0.9;
 
@@ -368,26 +401,33 @@
 
             if (progress <= zoomStart) {
                 const p = progress / zoomStart;
-                const eased = p * p * (3 - 2 * p); // Smooth start
+                const eased = p * p * (3 - 2 * p);
                 scaleVal = 1 + eased * 0.12;       
                 translateY = -eased * 20;          
                 opacityVal = 1;
             } else if (progress < zoomEnd) {
                 const p = (progress - zoomStart) / (zoomEnd - zoomStart);
                 
-                // CHANGED: Quadratic ease (p*p) instead of Cubic (p*p*p) 
-                // for a smoother, less abrupt acceleration
+                // Use Quadratic ease (p*p) for smoother start/stop feel
                 const eased = p * p;
                 
-                scaleVal = 1.12 + eased * 10;
+                // Cap the max scale lower (e.g., 6x) so mobile browsers don't struggle to repaint
+                // a massive texture. It will fade out before hitting max anyway.
+                scaleVal = 1.12 + eased * 5; 
+                
+                // Use translate3d for GPU acceleration
                 translateY = -20 - eased * 250;
+                
+                // Fade out faster so the heavy scaling element disappears sooner
                 opacityVal = 1 - eased;
             } else {
-                scaleVal = 11.12;
+                scaleVal = 6;
                 translateY = -270;
                 opacityVal = 0;
             }
-            introScaleWrapper.style.transform = `translateY(${translateY}px) scale(${scaleVal})`;
+            
+            // Apply Transform using translate3d for better performance
+            introScaleWrapper.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scaleVal})`;
             introScaleWrapper.style.opacity = opacityVal;
 
             // 3. Products Transition
