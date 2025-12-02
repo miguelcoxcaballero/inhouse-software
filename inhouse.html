@@ -27,7 +27,7 @@
                             googleBlue: '#0b57d0',
                             googleDark: '#1f1f1f',
                             googleGray: '#444746',
-                            typeTestBg: '#1E1E1E',
+                            typeTestBg: '#141414', /* Darker background */
                             typeTestGreen: '#66BB6A',
                             poliBg: '#0b0f14',
                             poliText: '#e8ecf1'
@@ -207,11 +207,13 @@
                    class="group relative flex flex-col items-center justify-center bg-brand-typeTestBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.8)] shadow-[0_8px_20px_rgba(0,0,0,0.6)] border border-[#333] hover:border-brand-typeTestGreen/50 no-underline cursor-pointer">
                     
                     <div class="mb-4 flex justify-center">
-                        <span class="material-symbols-rounded text-brand-typeTestGreen" style="font-size: 84px;">
-                            keyboard
+                        <!-- Added Glow -->
+                        <span class="material-symbols-rounded text-brand-typeTestGreen drop-shadow-[0_0_8px_rgba(102,187,106,0.6)]" style="font-size: 84px;">
+                            keyboard_alt
                         </span>
                     </div>
-                    <h3 class="font-inter text-[44px] leading-tight text-[#E0E0E0] font-bold tracking-tight">
+                    <!-- Updated to use Comfortaa (font-logo) and added text glow -->
+                    <h3 class="font-logo text-[44px] leading-tight text-[#E0E0E0] font-bold tracking-tight drop-shadow-[0_0_5px_rgba(255,255,255,0.2)]">
                         TypeTest
                     </h3>
                 </a>
