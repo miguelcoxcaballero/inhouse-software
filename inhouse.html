@@ -194,9 +194,6 @@
                     <h3 class="font-roboto text-[44px] leading-tight text-brand-googleDark font-normal tracking-tight mb-4">
                         Scanner
                     </h3>
-                    <p class="font-roboto text-xl text-brand-googleGray font-normal">
-                        Digitize, Crop & Export
-                    </p>
                 </a>
 
                 <a href="https://raw.githack.com/miguelcoxcaballero/TypeTest/main/TypeTest.html" target="_blank" 
@@ -210,9 +207,6 @@
                     <h3 class="font-inter text-[44px] leading-tight text-[#E0E0E0] font-bold tracking-tight mb-4">
                         TypeTest
                     </h3>
-                    <p class="font-mono text-xl text-[#E0E0E0]/80 font-normal">
-                        Dual Mode Carousel
-                    </p>
                 </a>
 
                 <a href="https://raw.githack.com/miguelcoxcaballero/politraumat/main/politraumat.html" target="_blank" 
@@ -228,10 +222,6 @@
                         <span class="text-white tracking-[0.14px]">poli</span>
                         <span class="poli-trauma-text tracking-[0.2px]">[traumaT]</span>
                     </h3>
-                    
-                    <p class="font-body text-xl text-brand-poliText/70 font-normal">
-                        Anki Cram Mobile
-                    </p>
                 </a>
 
             </div>
@@ -352,7 +342,7 @@
             const totalDistance = (introWrapper.offsetHeight - window.innerHeight) || 1;
             const progress = Math.min(Math.max(scrollY / totalDistance, 0), 1);
 
-            // 1. Lighting (Smoother)
+            // 1. Lighting
             const lightEnd = 0.35;
             if (progress <= lightEnd) {
                 const lp = progress / lightEnd;
