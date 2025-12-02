@@ -133,7 +133,7 @@
         </div>
     </nav>
 
-    <div id="intro-wrapper" class="relative" style="height: 200vh;">
+    <div id="intro-wrapper" class="relative" style="height: 150vh;">
         <div class="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
             <div class="absolute inset-0 bg-nouveau-pattern opacity-5 pointer-events-none"></div>
             <div id="intro-scale-wrapper" class="relative z-10 text-center px-4 max-w-4xl mx-auto origin-center">
@@ -352,7 +352,7 @@
             const totalDistance = (introWrapper.offsetHeight - window.innerHeight) || 1;
             const progress = Math.min(Math.max(scrollY / totalDistance, 0), 1);
 
-            // 1. Lighting
+            // 1. Lighting (Smoother)
             const lightEnd = 0.35;
             if (progress <= lightEnd) {
                 const lp = progress / lightEnd;
@@ -368,24 +368,30 @@
                 bgLightCaster.style.opacity = 0.6 * (1 - fadeOut);
             }
 
-            // 2. Zoom & Fade
-            const zoomStart = 0.25;
-            const zoomEnd = 0.85;
+            // 2. Zoom & Fade (UPDATED: Smoother Logic)
+            
+            // Adjusted thresholds to spread the animation out over the shorter scroll distance
+            const zoomStart = 0.1; 
+            const zoomEnd = 0.9;
+
             let scaleVal = 1; let translateY = 0; let opacityVal = 1;
 
             if (progress <= zoomStart) {
                 const p = progress / zoomStart;
-                const eased = p * p * (3 - 2 * p);
-                scaleVal = 1 + eased * 0.12;
-                translateY = -eased * 20;
+                const eased = p * p * (3 - 2 * p); // Smooth start
+                scaleVal = 1 + eased * 0.12;       
+                translateY = -eased * 20;          
                 opacityVal = 1;
             } else if (progress < zoomEnd) {
                 const p = (progress - zoomStart) / (zoomEnd - zoomStart);
-                const eased = p * p * p;
-                const easedOpacity = p * p;
+                
+                // CHANGED: Quadratic ease (p*p) instead of Cubic (p*p*p) 
+                // for a smoother, less abrupt acceleration
+                const eased = p * p;
+                
                 scaleVal = 1.12 + eased * 10;
                 translateY = -20 - eased * 250;
-                opacityVal = 1 - easedOpacity;
+                opacityVal = 1 - eased;
             } else {
                 scaleVal = 11.12;
                 translateY = -270;
