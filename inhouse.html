@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Inter:wght@400;700&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Comfortaa:wght@300;400;700&family=Inter:wght@400;700&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 
@@ -30,13 +30,16 @@
                             typeTestBg: '#141414', /* Darker background */
                             typeTestGreen: '#66BB6A',
                             poliBg: '#0b0f14',
-                            poliText: '#e8ecf1'
+                            poliText: '#e8ecf1',
+                            pomodoroRed: '#cc0000', /* Matching the egg pointer */
+                            pomodoroBg: '#ffffff', // White background for Pomodoro
                         }
                     },
                     fontFamily: {
                         'logo': ['"Comfortaa"', 'cursive'],
                         'serif': ['"Playfair Display"', 'serif'],
                         'body': ['"Lato"', 'sans-serif'],
+                        'handwriting': ['"Caveat"', 'cursive'],
                         'montserrat': ['"Montserrat"', 'sans-serif'],
                         'roboto': ['"Roboto"', 'sans-serif'],
                         'inter': ['"Inter"', 'sans-serif'],
@@ -87,7 +90,7 @@
         /* GPU Acceleration for smoother animation */
         #intro-scale-wrapper {
             will-change: transform, opacity;
-            transform: translate3d(0,0,0); /* Force Hardware Acceleration */
+            transform: translate3d(0,0,0);
             backface-visibility: hidden;
         }
 
@@ -100,7 +103,7 @@
             border-radius: 50%; filter: blur(60px); transform: translate(-50%, -50%); pointer-events: none; z-index: 0; opacity: 0;
         }
 
-        /* UPDATED: Increased margin slightly to -80vh to lower the physical start position */
+        /* Products start below zoom section */
         #products { margin-top: -80vh; opacity: 0; pointer-events: none; transition: opacity 0.1s linear; }
         #products.active { pointer-events: auto; }
         
@@ -188,10 +191,41 @@
                 <div class="h-px bg-white flex-grow ml-8"></div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center justify-items-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-center justify-items-center">
 
+                <!-- Egg Timer Card -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/eggtimer/main/egg.html" target="_blank" 
+                    class="group relative flex flex-col items-center justify-center bg-brand-pomodoroBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-gray-300 no-underline cursor-pointer">
+                    
+                    <div class="mb-4 flex justify-center">
+                        <!-- Fried Egg SVG Icon (Smoother top, smaller yolk) -->
+                        <svg class="w-[100px] h-[100px]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <title>Fried Egg Timer</title>
+                            <!-- Egg White -->
+                            <path
+                                d="M50 92
+                                   C 26 92, 18 70, 32 44
+                                   C 40 26, 60 26, 68 44
+                                   C 82 70, 74 92, 50 92 Z"
+                                fill="#ffffff"
+                                stroke="#e0e0e0"
+                                stroke-width="2"
+                            />
+                            <!-- Yolk -->
+                            <circle cx="50" cy="60" r="14" fill="#FFC107"/>
+                            <!-- Red Pointer -->
+                            <polygon points="50,45 55,60 45,60" fill="#cc0000"
+                                     transform="translate(0, 5) rotate(15, 50, 55)" />
+                        </svg>
+                    </div>
+                    <h3 class="font-handwriting text-5xl leading-tight text-brand-googleDark font-bold tracking-tight mt-2">
+                        Egg Timer
+                    </h3>
+                </a>
+
+                <!-- Scanner Card -->
                 <a href="https://raw.githack.com/miguelcoxcaballero/scan/main/index.html" target="_blank" 
-                   class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.3)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] no-underline cursor-pointer">
+                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.3)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] no-underline cursor-pointer">
                     
                     <div class="mb-4 flex justify-center">
                         <span class="material-symbols-rounded text-brand-copper" style="font-size: 84px;">
@@ -203,23 +237,23 @@
                     </h3>
                 </a>
 
+                <!-- TypeTest Card -->
                 <a href="https://raw.githack.com/miguelcoxcaballero/TypeTest/main/TypeTest.html" target="_blank" 
-                   class="group relative flex flex-col items-center justify-center bg-brand-typeTestBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.8)] shadow-[0_8px_20px_rgba(0,0,0,0.6)] border border-[#333] hover:border-brand-typeTestGreen/50 no-underline cursor-pointer">
+                    class="group relative flex flex-col items-center justify-center bg-brand-typeTestBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.8)] shadow-[0_8px_20px_rgba(0,0,0,0.6)] border border-[#333] hover:border-brand-typeTestGreen/50 no-underline cursor-pointer">
                     
                     <div class="mb-4 flex justify-center">
-                        <!-- Added Glow -->
                         <span class="material-symbols-rounded text-brand-typeTestGreen drop-shadow-[0_0_8px_rgba(102,187,106,0.6)]" style="font-size: 84px;">
                             keyboard_alt
                         </span>
                     </div>
-                    <!-- Updated to use Comfortaa (font-logo) and added text glow -->
                     <h3 class="font-logo text-[44px] leading-tight text-[#E0E0E0] font-bold tracking-tight drop-shadow-[0_0_5px_rgba(255,255,255,0.2)]">
                         TypeTest
                     </h3>
                 </a>
 
+                <!-- Politraumat Card -->
                 <a href="https://raw.githack.com/miguelcoxcaballero/politraumat/main/politraumat.html" target="_blank" 
-                   class="group relative flex flex-col items-center justify-center bg-brand-poliBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-5px_rgba(0,0,0,0.9)] shadow-[0_10px_30px_rgba(0,0,0,0.35)] border border-[#223046] hover:border-[#2a3a4f] no-underline cursor-pointer">
+                    class="group relative flex flex-col items-center justify-center bg-brand-poliBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-5px_rgba(0,0,0,0.9)] shadow-[0_10px_30px_rgba(0,0,0,0.35)] border border-[#223046] hover:border-[#2a3a4f] no-underline cursor-pointer">
                     
                     <div class="mb-4 flex justify-center">
                         <span class="material-symbols-rounded text-white" style="font-size: 84px;">
@@ -241,10 +275,11 @@
     <footer id="contact" class="bg-brand-black py-12 relative z-20 reveal-section w-full border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="flex items-center gap-3">
-                 <svg class="h-5 w-8 text-brand-copper" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="4">
+                <svg class="h-5 w-8 text-brand-copper" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="4">
                     <path d="M5 55 L50 10 L95 55" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <span class="font-body text-xs text-brand-cream/40 uppercase tracking-widest">Inhouse Software &copy; 2025</span>
+                <!-- FIXED: Changed font class and tracking class -->
+                <span class="font-logo text-xs text-brand-cream/40 tracking-tight">inhouse software &copy; 2025</span>
             </div>
             <div class="flex gap-10 items-center">
                 <a href="https://instagram.com/miguelcoxcaballero" target="_blank" class="group flex items-center gap-2 text-brand-cream/40 hover:text-brand-copper transition-colors text-xs uppercase tracking-widest">
@@ -315,7 +350,6 @@
                     const destination = elementPosition - navHeight - breathingRoom;
 
                     isAutoScrolling = true;
-                    // Duration: 1600ms (Approx 0.75x speed of standard smooth scroll)
                     smoothScrollTo(destination, 1600); 
                 }
             }
@@ -338,8 +372,9 @@
             waveCanvas.height = height;
 
             let baseY;
-            if (productCard) {
-                const cardRect = productCard.getBoundingClientRect();
+            const cardRow = productsSection.querySelector('.grid');
+            if (cardRow) {
+                const cardRect = cardRow.getBoundingClientRect();
                 const relativeBottom = cardRect.bottom - sectionRect.top;
                 baseY = Math.min(relativeBottom + 60, height * 0.95);
             } else {
@@ -418,10 +453,8 @@
                 bgLightCaster.style.opacity = 0.6 * (1 - fadeOut);
             }
 
-            // 2. Zoom & Fade (UPDATED FOR BUFFER)
+            // 2. Zoom & Fade
             const zoomStart = 0.1; 
-            // CHANGED: Ends at 0.65 instead of 0.9. 
-            // This ensures the text disappears much earlier.
             const zoomEnd = 0.65; 
 
             let scaleVal = 1; let translateY = 0; let opacityVal = 1;
@@ -429,27 +462,25 @@
             if (progress <= zoomStart) {
                 const p = progress / zoomStart;
                 const eased = p * p * (3 - 2 * p);
-                scaleVal = 1 + eased * 0.12;        
-                translateY = -eased * 20;           
+                scaleVal = 1 + eased * 0.12;       
+                translateY = -eased * 20;          
                 opacityVal = 1;
             } else if (progress < zoomEnd) {
                 const p = (progress - zoomStart) / (zoomEnd - zoomStart);
-                const eased = p * p; // Quadratic
+                const eased = p * p;
                 scaleVal = 1.12 + eased * 5; 
                 translateY = -20 - eased * 250;
                 opacityVal = 1 - eased;
             } else {
                 scaleVal = 6;
                 translateY = -270;
-                opacityVal = 0; // Text is fully gone here
+                opacityVal = 0;
             }
             
             introScaleWrapper.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scaleVal})`;
             introScaleWrapper.style.opacity = opacityVal;
 
-            // 3. Products Transition (UPDATED FOR BUFFER)
-            // CHANGED: Starts at 0.8 instead of 0.6.
-            // Result: Between 0.65 (Zoom End) and 0.8 (Product Start), screen is clean.
+            // 3. Products Transition
             const transitionStart = 0.8;
             const transitionEnd = 1.0;
 
