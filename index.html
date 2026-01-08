@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <title data-i18n="doc_title">Miguel Cox Caballero - Portfolio Oficial</title>
+
+  <meta name="description" content="Portfolio oficial de Miguel Cox Caballero. Estudiante de doble grado en Ingeniería Informática (UMU) e Ingeniería Aeroespacial (UPV). Proyectos de software, IA, movilidad ERASMUS+ y logros académicos.">
+  <meta name="keywords" content="Miguel Cox Caballero, Ingeniería Informática, Ingeniería Aeroespacial, UMU, UPV, Software, Portfolio, InHouse Software">
+  <meta name="author" content="Miguel Cox Caballero">
+  <meta name="robots" content="index, follow">
+  
+  <link rel="canonical" href="https://miguelcoxcaballero.com/">
+  <link rel="icon" href="/assets/favicon.ico" sizes="any">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Miguel Cox Caballero - Portfolio">
+  <meta property="og:description" content="Estudiante de Ingeniería Informática y Aeroespacial. Proyectos, logros y trayectoria.">
+  <meta property="og:image" content="https://miguelcoxcaballero.com/assets/mig-og.jpg">
+  <meta property="og:url" content="https://miguelcoxcaballero.com/">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Miguel Cox Caballero",
+    "url": "https://miguelcoxcaballero.com",
+    "image": "https://miguelcoxcaballero.com/assets/mig.gif",
+    "sameAs": [
+      "https://github.com/miguelcoxcaballero",
+      "https://www.instagram.com/miguelcoxcaballero"
+    ],
+    "jobTitle": "Estudiante de Ingeniería",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "InHouse Software"
+    },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Universidad de Murcia (UMU)" },
+      { "@type": "CollegeOrUniversity", "name": "Universitat Politècnica de València (UPV)" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Inter:wght@300;400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Paleta Refinada */
+      --black: #050505;
+      --white: #F8F9FA;
+      --castleton-green: #004230;
+      --cyber-yellow: #D9B500;
+      --vivid-tangelo: #D95F21;
+      --mahogany: #8C2E03;
+
+      /* Glassmorphism */
+      --glass-bg: rgba(0, 45, 33, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --blur-val: 12px;
+
+      --body-font: 'Inter', sans-serif;
+      --title-font: 'Poppins', sans-serif;
+      --logo-font: 'Comfortaa', cursive;
+      
+      --border-radius: 16px;
+      --transition: all 0.3s ease;
+    }
+
+    /* ESTILOS BASE */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; background-color: var(--black); }
+    body {
+      background-color: var(--black); color: var(--white);
+      font-family: var(--body-font); line-height: 1.6; overflow-x: hidden;
+    }
+
+    /* Barra de progreso */
+    .scroll-bar {
+      position: fixed; top: 0; left: 0; width: 100%; height: 0;
+      background-color: var(--mahogany); z-index: 500;
+      display: flex; align-items: center; padding: 0 1.5rem; overflow: hidden;
+      transition: height 0.2s linear;
+    }
+    .scroll-bar h1 {
+      font-family: var(--title-font); font-size: 1rem;
+      font-weight: 700; opacity: 0; letter-spacing: 1px;
+    }
+
+    /* HEADER */
+    header {
+      position: relative; width: 100%; aspect-ratio: 4 / 3;
+      overflow: hidden; pointer-events: none;
+    }
+    header img { 
+      width: 100%; height: 100%; object-fit: cover; display: block; 
+      filter: brightness(0.75);
+    }
+    .overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--black), transparent); z-index: 1; }
+    
+    .header-content {
+      position: absolute; bottom: 2rem; right: 5%; z-index: 10;
+      text-align: right; max-width: 90%;
+    }
+    .title-box {
+      background: var(--glass-bg); border: 1px solid var(--glass-border);
+      padding: 1.5rem 2.5rem; border-radius: var(--border-radius);
+      position: relative;
+    }
+    .title-box h1 {
+      font-family: var(--title-font);
+      font-weight: 700; margin: 0; color: var(--white); letter-spacing: -1px;
+      /* TAMAÑO REDUCIDO (70% aprox del anterior) */
+      font-size: clamp(1.3rem, 4.2vw, 2.6rem); 
+    }
+
+    .lang-switcher { position: fixed; top: 1.5rem; right: 1.5rem; z-index: 600; pointer-events: auto; }
+    .lang-switcher button {
+      padding: 0.6rem 1.2rem; background: var(--cyber-yellow);
+      border: none; border-radius: 50px; font-weight: 700;
+      cursor: pointer; color: #000; transition: var(--transition);
+    }
+    .lang-switcher button:hover { transform: scale(1.05); }
+
+    /* MAIN & SECCIONES */
+    main { width: 100%; padding: 4rem 1.5rem; }
+    .content-wrapper { width: 100%; max-width: 850px; margin: 0 auto; }
+
+    section {
+      position: relative; background: transparent; 
+      border-radius: var(--border-radius); padding: 3rem; margin-bottom: 3.5rem;
+      overflow: hidden; isolation: isolate; 
+    }
+    section::before {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--blur-val));
+      -webkit-backdrop-filter: blur(var(--blur-val));
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      pointer-events: none;
+    }
+    section h2 {
+      font-family: var(--title-font); font-size: 1.4rem; font-weight: 700;
+      color: var(--vivid-tangelo); border-bottom: 2px solid var(--vivid-tangelo);
+      display: inline-block; margin-bottom: 2rem; padding-bottom: 0.5rem;
+      text-transform: uppercase; letter-spacing: 2px;
+    }
+
+    /* Listas Generales */
+    section ul:not(.project-grid):not(.erasmus-grid):not(.lang-grid) li {
+      position: relative; margin-bottom: 1rem; padding-left: 1.8rem; list-style: none;
+    }
+    section ul:not(.project-grid):not(.erasmus-grid):not(.lang-grid) li::before {
+      content: ""; position: absolute; left: 0; top: 0.65rem;
+      width: 8px; height: 8px; background-color: var(--cyber-yellow); border-radius: 50%;
+    }
+
+    /* GRID PROYECTOS */
+    .project-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem; list-style: none !important; padding: 0; margin: 0;
+    }
+    .project-grid li { padding: 0 !important; margin: 0 !important; }
+    .project-grid li::before { content: none !important; }
+
+    .project-card {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 2.5rem; min-height: 200px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border); border-radius: var(--border-radius);
+      text-decoration: none !important; transition: var(--transition);
+      color: var(--white) !important; 
+    }
+    .project-card:hover {
+      background: rgba(255, 255, 255, 0.1); border-color: var(--cyber-yellow);
+      transform: translateY(-5px);
+    }
+    .project-card span { 
+      color: var(--white) !important; font-weight: 600; margin-top: 15px; font-size: 1.1rem; 
+    }
+
+    /* DISEÑO ERASMUS */
+    .erasmus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      list-style: none !important;
+      padding: 0 !important;
+      margin-top: 2rem;
+    }
+    .erasmus-grid li { margin: 0 !important; }
+    .erasmus-grid li::before { content: none !important; }
+
+    .erasmus-card {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 2.5rem !important; 
+      height: 100%;
+      display: flex; flex-direction: column; align-items: flex-start;
+    }
+
+    .erasmus-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.2rem; width: 100%; 
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 1rem;
+    }
+    
+    .flag-svg {
+      width: 48px; height: 32px; 
+      border-radius: 4px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      display: block;
+      background: #000; 
+      object-fit: cover; 
+    }
+    
+    .erasmus-country {
+      font-family: var(--title-font); font-size: 1.2rem; font-weight: 700;
+      color: var(--white); text-transform: uppercase; letter-spacing: 0.5px;
+    }
+
+    /* BADGES */
+    .erasmus-type {
+      font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+      padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1rem;
+      display: inline-block;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .badge-ye { background-color: var(--cyber-yellow); color: #000; }
+    .badge-tc { background-color: var(--vivid-tangelo); color: #fff; }
+
+    .erasmus-desc { font-size: 1rem; color: #ddd; line-height: 1.6; }
+    .erasmus-figure { text-align: center; margin: 0 0 3rem 0; }
+    .erasmus-pic { width: 100%; max-width: 100%; border-radius: var(--border-radius); }
+
+    /* DISEÑO IDIOMAS */
+    .lang-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem; 
+      list-style: none !important; 
+      padding: 0 !important; 
+      margin-top: 1rem;
+    }
+    .lang-grid li { 
+      margin: 0 !important; 
+    }
+    .lang-grid li::before { content: none !important; }
+
+    .lang-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 1.5rem !important;
+      display: flex; flex-direction: column;
+    }
+
+    .lang-header {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
+    }
+    
+    .lang-info h3 {
+      font-family: var(--body-font); font-weight: 700; font-size: 1.1rem;
+      margin: 0; color: var(--white);
+    }
+    .lang-level-text {
+      font-size: 0.9rem; color: var(--cyber-yellow); font-weight: 600;
+    }
+
+    .level-bar-bg {
+      width: 100%; height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px; overflow: hidden;
+    }
+    .level-bar-fill {
+      height: 100%; 
+      background-color: var(--cyber-yellow);
+      border-radius: 4px;
+    }
+
+    /* Logo InHouse */
+    .inhouse-logo-container { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .inhouse-svg { width: 55px; height: auto; color: var(--vivid-tangelo); }
+    .inhouse-text {
+      font-family: var(--logo-font); font-size: 1.05rem;
+      font-weight: 700; color: var(--white);
+      letter-spacing: -0.5px; text-transform: lowercase; 
+    }
+
+    footer { padding: 5rem 2rem; text-align: center; border-top: 1px solid var(--glass-border); opacity: 0.8; }
+    footer a { color: var(--vivid-tangelo); font-weight: 600; }
+
+    /* VISTA DIVIDIDA (PC) */
+    @media (min-width: 1024px) and (min-aspect-ratio: 1/1) {
+      body { display: flex; }
+      header { position: fixed; width: 45vw; height: 100vh; aspect-ratio: unset; }
+      main { margin-left: 45vw; width: 55vw; display: flex; justify-content: center; padding: 6rem 3rem; }
+      .content-wrapper { width: 100%; max-width: 780px; margin: 0; }
+      .scroll-bar { left: 45vw; width: 55vw; }
+      .title-box h1 { font-size: 4.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-bar" id="scrollBar">
+    <h1 id="barTitle" data-i18n="doc_title_name">Miguel Cox Caballero</h1>
+  </div>
+
+  <div class="lang-switcher">
+    <button id="langSwitcher">🌐 ES</button>
+  </div>
+
+  <header>
+    <img src="assets/mig.gif" alt="Miguel Cox Caballero">
+    <div class="overlay"></div>
+    <div class="header-content">
+      <div class="title-box">
+        <h1 data-i18n="doc_title_name">Miguel Cox Caballero</h1>
+      </div>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <div class="content-wrapper">
+      
+      <section id="about">
+        <h2 data-i18n="about_h2">Acerca de mí</h2>
+        <p data-i18n="about_p">Estudiante de Ingeniería Informática (UMU) e Ingeniería Aeroespacial (UPV).</p>
+      </section>
+
+      <section id="achievements">
+        <h2 data-i18n="achi_h2">Logros Personales</h2>
+        <ul>
+          <li data-i18n="achi_1">Oro en la Olimpiada de Ingeniería IT de la UCAM.</li>
+          <li data-i18n="achi_2">Oro en la Olimpiada de Arquitectura Sostenible.</li>
+          <li data-i18n="achi_3">3º puesto en la Olimpiada Nacional de Arquitectura Sostenible.</li>
+        </ul>
+      </section>
+
+      <section id="languages">
+        <h2 data-i18n="lang_h2">Idiomas</h2>
+        
+        <ul class="lang-grid">
+          
+          <li class="lang-card">
+            <div class="lang-header">
+              <svg class="flag-svg" viewBox="0 0 750 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <rect width="750" height="500" fill="#c60b1e"/>
+                <rect width="750" height="250" y="125" fill="#ffc400"/>
+              </svg>
+              <div class="lang-info">
+                <h3 data-i18n="lang_1_name">Español</h3>
+                <span class="lang-level-text" data-i18n="lang_1_level">Nativo</span>
+              </div>
+            </div>
+            <div class="level-bar-bg">
+              <div class="level-bar-fill" style="width: 100%; background-color: var(--vivid-tangelo);"></div>
+            </div>
+          </li>
+
+          <li class="lang-card">
+            <div class="lang-header">
+              <svg class="flag-svg" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
+                <path d="M0,0 v30 h60 v-30 z" fill="#00247d"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#cf142b" stroke-width="4"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#cf142b" stroke-width="6"/>
+              </svg>
+              <div class="lang-info">
+                <h3 data-i18n="lang_2_name">Inglés</h3>
+                <span class="lang-level-text" data-i18n="lang_2_level">C2 (Cambridge CPE)</span>
+              </div>
+            </div>
+            <div class="level-bar-bg">
+              <div class="level-bar-fill" style="width: 100%; background-color: var(--vivid-tangelo);"></div>
+            </div>
+          </li>
+
+          <li class="lang-card">
+            <div class="lang-header">
+              <svg class="flag-svg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <rect width="900" height="600" fill="#fff"/>
+                <rect width="300" height="600" fill="#002395"/>
+                <rect x="600" width="300" height="600" fill="#ED2939"/>
+              </svg>
+              <div class="lang-info">
+                <h3 data-i18n="lang_3_name">Francés</h3>
+                <span class="lang-level-text" data-i18n="lang_3_level">B1 (EOI)</span>
+              </div>
+            </div>
+            <div class="level-bar-bg"><div class="level-bar-fill" style="width: 50%;"></div></div>
+          </li>
+
+          <li class="lang-card">
+            <div class="lang-header">
+              <svg class="flag-svg" viewBox="0 0 5 3" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <rect width="5" height="3" y="0" x="0" fill="#000"/>
+                <rect width="5" height="2" y="1" x="0" fill="#d00"/>
+                <rect width="5" height="1" y="2" x="0" fill="#ffce00"/>
+              </svg>
+              <div class="lang-info">
+                <h3 data-i18n="lang_4_name">Alemán</h3>
+                <span class="lang-level-text" data-i18n="lang_4_level">A1 (EOI)</span>
+              </div>
+            </div>
+            <div class="level-bar-bg"><div class="level-bar-fill" style="width: 25%;"></div></div>
+          </li>
+
+          <li class="lang-card">
+            <div class="lang-header">
+              <svg class="flag-svg" viewBox="0 0 1500 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <rect width="1500" height="1000" fill="#009246"/>
+                <rect x="500" width="1000" height="1000" fill="#fff"/>
+                <rect x="1000" width="500" height="1000" fill="#ce2b37"/>
+              </svg>
+              <div class="lang-info">
+                <h3 data-i18n="lang_5_name">Italiano</h3>
+                <span class="lang-level-text" data-i18n="lang_5_level">A2</span>
+              </div>
+            </div>
+            <div class="level-bar-bg"><div class="level-bar-fill" style="width: 35%;"></div></div>
+          </li>
+
+          <li class="lang-card">
+            <div class="lang-header">
+              <svg class="flag-svg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <rect width="900" height="600" fill="#fcdd09"/>
+                <rect y="60" width="900" height="60" fill="#da121a"/>
+                <rect y="180" width="900" height="60" fill="#da121a"/>
+                <rect y="300" width="900" height="60" fill="#da121a"/>
+                <rect y="420" width="900" height="60" fill="#da121a"/>
+              </svg>
+              <div class="lang-info">
+                <h3 data-i18n="lang_6_name">Catalán</h3>
+                <span class="lang-level-text" data-i18n="lang_6_level">A1</span>
+              </div>
+            </div>
+            <div class="level-bar-bg"><div class="level-bar-fill" style="width: 20%;"></div></div>
+          </li>
+
+        </ul>
+      </section>
+
+      <section id="proyectos">
+        <h2 data-i18n="proj_h2">Proyectos</h2>
+        <ul class="project-grid">
+          <li>
+            <a class="project-card" href="https://raw.githack.com/miguelcoxcaballero/inhouse-software/main/inhouse.html" target="_blank">
+              <div class="inhouse-logo-container">
+                <svg class="inhouse-svg" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="5">
+                  <path d="M5 55 L50 10 L95 55" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="inhouse-text">inhouse software</span>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a class="project-card" href="https://github.com/miguelcoxcaballero/antenahechaamano" target="_blank">
+              <span data-i18n="proj_1">IDIES Antena Hecha a Mano</span>
+            </a>
+          </li>
+          <li>
+            <a class="project-card" href="https://github.com/miguelcoxcaballero/creaciondeundronautonomo" target="_blank">
+              <span data-i18n="proj_2">Dron Autónomo (Visión)</span>
+            </a>
+          </li>
+          <li>
+            <a class="project-card" href="https://sites.google.com/view/loskelvin/home" target="_blank">
+              <span data-i18n="proj_3">Olimpiada Edificación</span>
+            </a>
+          </li>
+          <li>
+            <a class="project-card" href="https://www.youtube.com/channel/UCpbIWsLwqpKsfstcKZkJWkA" target="_blank">
+              <span data-i18n="proj_7">MIGRANTE / HABITANTE</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section id="erasmus">
+        <h2 data-i18n="erasmus_h2">Movilidad ERASMUS+</h2>
+        <figure class="erasmus-figure">
+          <img class="erasmus-pic" src="assets/erasmus.png" alt="ERASMUS+" loading="lazy">
+        </figure>
+        
+        <ul class="erasmus-grid">
+          
+          <li class="erasmus-card">
+            <div class="erasmus-header">
+              <svg class="flag-svg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <rect width="900" height="600" fill="#fff"/>
+                <rect width="900" height="300" y="300" fill="#d7141a"/>
+                <path d="M0 0l450 300L0 600" fill="#11457e"/>
+              </svg>
+              <span class="erasmus-country" data-i18n="erasmus_1_country">CHEQUIA</span>
+            </div>
+            <span class="erasmus-type badge-ye">Youth Exchange</span>
+            <p class="erasmus-desc" data-i18n="erasmus_1_desc">Herencia cultural europea.</p>
+          </li>
+          
+          <li class="erasmus-card">
+            <div class="erasmus-header">
+              <svg class="flag-svg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <rect width="1000" height="300" fill="#002b7f"/>
+                <rect y="300" width="1000" height="300" fill="#ce1126"/>
+                <path d="M166 100l25-50 25 50 25-50 25 50 25-50v100H166z" fill="#ffd700"/>
+              </svg>
+              <span class="erasmus-country" data-i18n="erasmus_2_country">LIECHTENSTEIN</span>
+            </div>
+            <span class="erasmus-type badge-ye">Youth Exchange</span>
+            <p class="erasmus-desc" data-i18n="erasmus_2_desc">Vida sostenible y contacto con la naturaleza.</p>
+          </li>
+
+          <li class="erasmus-card">
+            <div class="erasmus-header">
+              <svg class="flag-svg" viewBox="0 0 16 10" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <rect width="16" height="10" fill="#fff"/>
+                <rect y="5" width="16" height="5" fill="#dc143c"/>
+              </svg>
+              <span class="erasmus-country" data-i18n="erasmus_3_country">POLONIA</span>
+            </div>
+            <span class="erasmus-type badge-tc">Training Course</span>
+            <p class="erasmus-desc" data-i18n="erasmus_3_desc">IA, ciberseguridad y networking.</p>
+          </li>
+
+          <li class="erasmus-card">
+            <div class="erasmus-header">
+              <svg class="flag-svg" viewBox="0 0 16 10" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <rect width="16" height="10" fill="#fff"/>
+                <rect y="5" width="16" height="5" fill="#dc143c"/>
+              </svg>
+              <span class="erasmus-country" data-i18n="erasmus_4_country">POLONIA</span>
+            </div>
+            <span class="erasmus-type badge-tc">Training Course</span>
+            <p class="erasmus-desc" data-i18n="erasmus_4_desc">Mindful Trails y salud mental.</p>
+          </li>
+
+          <li class="erasmus-card">
+            <div class="erasmus-header">
+              <svg class="flag-svg" viewBox="0 0 1500 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <rect width="500" height="1000" fill="#009246"/>
+                <rect x="500" width="500" height="1000" fill="#fff"/>
+                <rect x="1000" width="500" height="1000" fill="#ce2b37"/>
+              </svg>
+              <span class="erasmus-country" data-i18n="erasmus_5_country">ITALIA</span>
+            </div>
+            <span class="erasmus-type badge-ye">Youth Exchange</span>
+            <p class="erasmus-desc" data-i18n="erasmus_5_desc">TechWise Youth: IA y tecnología.</p>
+          </li>
+
+          <li class="erasmus-card">
+            <div class="erasmus-header">
+              <svg class="flag-svg" viewBox="0 0 5 3" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <rect width="5" height="3" y="0" x="0" fill="#000"/>
+                <rect width="5" height="2" y="1" x="0" fill="#d00"/>
+                <rect width="5" height="1" y="2" x="0" fill="#ffce00"/>
+              </svg>
+              <span class="erasmus-country" data-i18n="erasmus_6_country">ALEMANIA</span>
+            </div>
+            <span class="erasmus-type badge-tc">Training Course</span>
+            <p class="erasmus-desc" data-i18n="erasmus_6_desc">PeaceUp! Resolución de conflictos.</p>
+          </li>
+
+          <li class="erasmus-card">
+            <div class="erasmus-header">
+              <svg class="flag-svg" viewBox="0 0 5 3" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <rect width="5" height="3" y="0" x="0" fill="#000"/>
+                <rect width="5" height="2" y="1" x="0" fill="#d00"/>
+                <rect width="5" height="1" y="2" x="0" fill="#ffce00"/>
+              </svg>
+              <span class="erasmus-country" data-i18n="erasmus_7_country">ALEMANIA</span>
+            </div>
+            <span class="erasmus-type badge-ye">Youth Exchange</span>
+            <p class="erasmus-desc" data-i18n="erasmus_7_desc">Digital Detox y reconexión natural.</p>
+          </li>
+
+          <li class="erasmus-card">
+            <div class="erasmus-header">
+              <svg class="flag-svg" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                <rect width="600" height="100" fill="#ce2939"/>
+                <rect y="100" width="600" height="100" fill="#fff"/>
+                <rect y="200" width="600" height="100" fill="#477050"/>
+              </svg>
+              <span class="erasmus-country" data-i18n="erasmus_8_country">HUNGRÍA</span>
+            </div>
+            <span class="erasmus-type badge-ye">Youth Exchange</span>
+            <p class="erasmus-desc" data-i18n="erasmus_8_desc">Youth Council Exchange: trabajo en equipo, creatividad.</p>
+          </li>
+        </ul>
+      </section>
+
+      <section id="congress">
+        <h2 data-i18n="conf_h2">Congresos</h2>
+        <ul>
+          <li data-i18n="conf_1">Asistencia al XXXII congreso de la Asociación de Estudiantes de Aeronáutica y Espacio de 2025 en León.</li>
+          <li data-i18n="conf_2">Asistencia al I Congreso Ibérico de EUROAVIA.</li>
+        </ul>
+      </section>
+
+      <footer>
+        <p data-i18n="footer_copy">© 2025 Miguel Cox Caballero.</p>
+        <p><a href="https://www.instagram.com/miguelcoxcaballero" target="_blank">@miguelcoxcaballero</a></p>
+      </footer>
+
+    </div>
+  </main>
+
+  <script>
+    const I18N = {
+      es: {
+        doc_title_name: 'Miguel Cox Caballero',
+        about_h2 : 'Acerca de mí',
+        about_p  : 'Estudiante de Ingeniería Informática (UMU) e Ingeniería Aeroespacial (UPV).',
+        achi_h2  : 'Logros Personales',
+        achi_1   : 'Oro en la Olimpiada de Ingeniería IT de la UCAM.',
+        achi_2   : 'Oro en la Olimpiada de Arquitectura Sostenible.',
+        achi_3   : '3º puesto en la Olimpiada Nacional de Arquitectura Sostenible.',
+        lang_h2  : 'Idiomas',
+        
+        // IDIOMAS (Separados Nombre y Nivel para el Grid)
+        lang_1_name: 'Español',
+        lang_1_level: 'Nativo',
+        lang_2_name: 'Inglés',
+        lang_2_level: 'C2 (Cambridge CPE)',
+        lang_3_name: 'Francés',
+        lang_3_level: 'B1 (EOI)',
+        lang_4_name: 'Alemán',
+        lang_4_level: 'A1 (EOI)',
+        lang_5_name: 'Italiano',
+        lang_5_level: 'A2',
+        lang_6_name: 'Catalán',
+        lang_6_level: 'A1',
+
+        proj_h2  : 'Proyectos',
+        proj_1   : 'IDIES Antena Hecha a Mano',
+        proj_2   : 'Guiado de drone por visión computacional',
+        proj_3   : 'Olimpiada de edificación (Los Kelvin)',
+        proj_7   : 'MIGRANTE / HABITANTE (Becas Europa UFV)',
+        
+        erasmus_h2: 'Movilidad ERASMUS+',
+        // Países
+        erasmus_1_country: 'CHEQUIA',
+        erasmus_2_country: 'LIECHTENSTEIN',
+        erasmus_3_country: 'POLONIA',
+        erasmus_4_country: 'POLONIA',
+        erasmus_5_country: 'ITALIA',
+        erasmus_6_country: 'ALEMANIA',
+        erasmus_7_country: 'ALEMANIA',
+        erasmus_8_country: 'HUNGRÍA',
+        // Descripciones
+        erasmus_1_desc : 'Herencia cultural europea.',
+        erasmus_2_desc : 'Vida sostenible y contacto directo con la naturaleza.',
+        erasmus_3_desc : 'IA, ciberseguridad y networking con otros profesionales.',
+        erasmus_4_desc : 'Mindful Trails sobre salud mental y bienestar.',
+        erasmus_5_desc : 'TechWise Youth sobre IA y comprensión tecnológica entre la juventud.',
+        erasmus_6_desc : 'PeaceUp! sobre habilidades de resolución de conflictos y CNV.',
+        erasmus_7_desc : 'Digital Detox sobre uso adecuado de la tecnología y reconexión con la naturaleza.',
+        erasmus_8_desc : 'Youth Council Exchange: trabajo en equipo, creatividad y resolución de problemas.',
+
+        conf_h2   : 'Congresos',
+        conf_1    : 'Asistencia al XXXII congreso de la Asociación de Estudiantes de Aeronáutica y Espacio de 2025 en León.',
+        conf_2    : 'Asistencia al I Congreso Ibérico de EUROAVIA.',
+        footer_copy  : '© 2025 Miguel Cox Caballero. Todos los derechos reservados.'
+      },
+      en: {
+        doc_title_name: 'Miguel Cox Caballero',
+        about_h2 : 'About Me',
+        about_p  : 'Student of Computer Engineering (UMU) and Aerospace Engineering (UPV).',
+        achi_h2  : 'Personal Achievements',
+        achi_1   : 'Gold medal in the UCAM IT Engineering Olympiad.',
+        achi_2   : 'Gold medal in the Sustainable Architecture Olympiad.',
+        achi_3   : '3rd place in the National Sustainable Architecture Olympiad.',
+        lang_h2  : 'Languages',
+        
+        // IDIOMAS EN
+        lang_1_name: 'Spanish',
+        lang_1_level: 'Native',
+        lang_2_name: 'English',
+        lang_2_level: 'C2 (Cambridge CPE)',
+        lang_3_name: 'French',
+        lang_3_level: 'B1 (EOI)',
+        lang_4_name: 'German',
+        lang_4_level: 'A1 (EOI)',
+        lang_5_name: 'Italian',
+        lang_5_level: 'A2',
+        lang_6_name: 'Catalan',
+        lang_6_level: 'A1',
+
+        proj_h2  : 'Projects',
+        proj_1   : 'IDIES Handmade Antenna',
+        proj_2   : 'Drone guidance with computer vision',
+        proj_3   : 'Building Olympiad (Los Kelvin)',
+        proj_7   : 'MIGRANTE / HABITANTE (UFV Europe Scholarships)',
+        
+        erasmus_h2: 'ERASMUS+ Mobility',
+        // Countries
+        erasmus_1_country: 'CZECHIA',
+        erasmus_2_country: 'LIECHTENSTEIN',
+        erasmus_3_country: 'POLAND',
+        erasmus_4_country: 'POLAND',
+        erasmus_5_country: 'ITALY',
+        erasmus_6_country: 'GERMANY',
+        erasmus_7_country: 'GERMANY',
+        erasmus_8_country: 'HUNGARY',
+        // Descriptions
+        erasmus_1_desc : 'European cultural heritage.',
+        erasmus_2_desc : 'Sustainable living and direct contact with nature.',
+        erasmus_3_desc : 'AI, cybersecurity and networking with like-minded professionals.',
+        erasmus_4_desc : 'Mindful Trails about mental health and wellbeing.',
+        erasmus_5_desc : 'TechWise Youth about AI and technology understanding among the youth.',
+        erasmus_6_desc : 'PeaceUp! about conflict solving skills and NVC.',
+        erasmus_7_desc : 'Digital Detox about proper use of technology and reconnecting with nature.',
+        erasmus_8_desc : 'Youth Council Exchange: teamwork, creativity, and problem-solving abilities.',
+
+        conf_h2   : 'Conferences',
+        conf_1    : 'Attendance at the 2025 XXXII Congress of the Spanish Aeronautics and Space Students Association in León.',
+        conf_2    : 'Attendance at the I Iberian Congress of EUROAVIA.',
+        footer_copy  : '© 2025 Miguel Cox Caballero. All rights reserved.'
+      }
+    };
+
+    function updateLang(lang) {
+      const dict = I18N[lang] || I18N.es;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          if (el.getAttribute('data-i18n-html') === 'true') el.innerHTML = dict[key];
+          else el.textContent = dict[key];
+        }
+      });
+      document.getElementById('langSwitcher').textContent = '🌐 ' + lang.toUpperCase();
+      document.documentElement.lang = lang;
+      localStorage.setItem('lang', lang);
+    }
+
+    document.getElementById('langSwitcher').addEventListener('click', () => {
+      const current = localStorage.getItem('lang') || 'es';
+      updateLang(current === 'es' ? 'en' : 'es');
+    });
+
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      const height = Math.min(y / 10, 48);
+      document.getElementById('scrollBar').style.height = height + 'px';
+      document.getElementById('barTitle').style.opacity = y > 400 ? '1' : '0';
+    });
+
+    updateLang(localStorage.getItem('lang') || 'es');
+  </script>
+</body>
+</html>
