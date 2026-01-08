@@ -1,759 +1,557 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  
-  <title data-i18n="doc_title">Miguel Cox Caballero - Portfolio Oficial</title>
-
-  <meta name="description" content="Portfolio oficial de Miguel Cox Caballero. Estudiante de doble grado en Ingeniería Informática (UMU) e Ingeniería Aeroespacial (UPV). Proyectos de software, IA, movilidad ERASMUS+ y logros académicos.">
-  <meta name="keywords" content="Miguel Cox Caballero, Ingeniería Informática, Ingeniería Aeroespacial, UMU, UPV, Software, Portfolio, InHouse Software">
-  <meta name="author" content="Miguel Cox Caballero">
-  <meta name="robots" content="index, follow">
-  
-  <link rel="canonical" href="https://miguelcoxcaballero.com/">
-  <link rel="icon" href="/assets/favicon.ico" sizes="any">
-
-  <meta property="og:type" content="profile">
-  <meta property="og:title" content="Miguel Cox Caballero - Portfolio">
-  <meta property="og:description" content="Estudiante de Ingeniería Informática y Aeroespacial. Proyectos, logros y trayectoria.">
-  <meta property="og:image" content="https://miguelcoxcaballero.com/assets/mig-og.jpg">
-  <meta property="og:url" content="https://miguelcoxcaballero.com/">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Miguel Cox Caballero",
-    "url": "https://miguelcoxcaballero.com",
-    "image": "https://miguelcoxcaballero.com/assets/mig.gif",
-    "sameAs": [
-      "https://github.com/miguelcoxcaballero",
-      "https://www.instagram.com/miguelcoxcaballero"
-    ],
-    "jobTitle": "Estudiante de Ingeniería",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "InHouse Software"
-    },
-    "alumniOf": [
-      { "@type": "CollegeOrUniversity", "name": "Universidad de Murcia (UMU)" },
-      { "@type": "CollegeOrUniversity", "name": "Universitat Politècnica de València (UPV)" }
-    ]
-  }
-  </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&family=Inter:wght@300;400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      /* Paleta Refinada */
-      --black: #050505;
-      --white: #F8F9FA;
-      --castleton-green: #004230;
-      --cyber-yellow: #D9B500;
-      --vivid-tangelo: #D95F21;
-      --mahogany: #8C2E03;
-
-      /* Glassmorphism */
-      --glass-bg: rgba(0, 45, 33, 0.85);
-      --glass-border: rgba(255, 255, 255, 0.1);
-      --blur-val: 12px;
-
-      --body-font: 'Inter', sans-serif;
-      --title-font: 'Poppins', sans-serif;
-      --logo-font: 'Comfortaa', cursive;
-      
-      --border-radius: 16px;
-      --transition: all 0.3s ease;
-    }
-
-    /* ESTILOS BASE */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; background-color: var(--black); }
-    body {
-      background-color: var(--black); color: var(--white);
-      font-family: var(--body-font); line-height: 1.6; overflow-x: hidden;
-    }
-
-    /* Barra de progreso */
-    .scroll-bar {
-      position: fixed; top: 0; left: 0; width: 100%; height: 0;
-      background-color: var(--mahogany); z-index: 500;
-      display: flex; align-items: center; padding: 0 1.5rem; overflow: hidden;
-      transition: height 0.2s linear;
-    }
-    .scroll-bar h1 {
-      font-family: var(--title-font); font-size: 1rem;
-      font-weight: 700; opacity: 0; letter-spacing: 1px;
-    }
-
-    /* HEADER */
-    header {
-      position: relative; width: 100%; aspect-ratio: 4 / 3;
-      overflow: hidden; pointer-events: none;
-    }
-    header img { 
-      width: 100%; height: 100%; object-fit: cover; display: block; 
-      filter: brightness(0.75);
-    }
-    .overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--black), transparent); z-index: 1; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inhouse Software</title>
     
-    .header-content {
-      position: absolute; bottom: 2rem; right: 5%; z-index: 10;
-      text-align: right; max-width: 90%;
-    }
-    .title-box {
-      background: var(--glass-bg); border: 1px solid var(--glass-border);
-      padding: 1.5rem 2.5rem; border-radius: var(--border-radius);
-      position: relative;
-    }
-    .title-box h1 {
-      font-family: var(--title-font);
-      font-weight: 700; margin: 0; color: var(--white); letter-spacing: -1px;
-      /* TAMAÑO REDUCIDO (70% aprox del anterior) */
-      font-size: clamp(1.3rem, 4.2vw, 2.6rem); 
-    }
-
-    .lang-switcher { position: fixed; top: 1.5rem; right: 1.5rem; z-index: 600; pointer-events: auto; }
-    .lang-switcher button {
-      padding: 0.6rem 1.2rem; background: var(--cyber-yellow);
-      border: none; border-radius: 50px; font-weight: 700;
-      cursor: pointer; color: #000; transition: var(--transition);
-    }
-    .lang-switcher button:hover { transform: scale(1.05); }
-
-    /* MAIN & SECCIONES */
-    main { width: 100%; padding: 4rem 1.5rem; }
-    .content-wrapper { width: 100%; max-width: 850px; margin: 0 auto; }
-
-    section {
-      position: relative; background: transparent; 
-      border-radius: var(--border-radius); padding: 3rem; margin-bottom: 3.5rem;
-      overflow: hidden; isolation: isolate; 
-    }
-    section::before {
-      content: ""; position: absolute; inset: 0; z-index: -1;
-      background: var(--glass-bg);
-      backdrop-filter: blur(var(--blur-val));
-      -webkit-backdrop-filter: blur(var(--blur-val));
-      border: 1px solid var(--glass-border);
-      border-radius: var(--border-radius);
-      pointer-events: none;
-    }
-    section h2 {
-      font-family: var(--title-font); font-size: 1.4rem; font-weight: 700;
-      color: var(--vivid-tangelo); border-bottom: 2px solid var(--vivid-tangelo);
-      display: inline-block; margin-bottom: 2rem; padding-bottom: 0.5rem;
-      text-transform: uppercase; letter-spacing: 2px;
-    }
-
-    /* Listas Generales */
-    section ul:not(.project-grid):not(.erasmus-grid):not(.lang-grid) li {
-      position: relative; margin-bottom: 1rem; padding-left: 1.8rem; list-style: none;
-    }
-    section ul:not(.project-grid):not(.erasmus-grid):not(.lang-grid) li::before {
-      content: ""; position: absolute; left: 0; top: 0.65rem;
-      width: 8px; height: 8px; background-color: var(--cyber-yellow); border-radius: 50%;
-    }
-
-    /* GRID PROYECTOS */
-    .project-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem; list-style: none !important; padding: 0; margin: 0;
-    }
-    .project-grid li { padding: 0 !important; margin: 0 !important; }
-    .project-grid li::before { content: none !important; }
-
-    .project-card {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 2.5rem; min-height: 200px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--glass-border); border-radius: var(--border-radius);
-      text-decoration: none !important; transition: var(--transition);
-      color: var(--white) !important; 
-    }
-    .project-card:hover {
-      background: rgba(255, 255, 255, 0.1); border-color: var(--cyber-yellow);
-      transform: translateY(-5px);
-    }
-    .project-card span { 
-      color: var(--white) !important; font-weight: 600; margin-top: 15px; font-size: 1.1rem; 
-    }
-
-    /* DISEÑO ERASMUS */
-    .erasmus-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-      list-style: none !important;
-      padding: 0 !important;
-      margin-top: 2rem;
-    }
-    .erasmus-grid li { margin: 0 !important; }
-    .erasmus-grid li::before { content: none !important; }
-
-    .erasmus-card {
-      background: rgba(0, 0, 0, 0.25);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--border-radius);
-      padding: 2.5rem !important; 
-      height: 100%;
-      display: flex; flex-direction: column; align-items: flex-start;
-    }
-
-    .erasmus-header {
-      display: flex; align-items: center; gap: 1rem;
-      margin-bottom: 1.2rem; width: 100%; 
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding-bottom: 1rem;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Comfortaa:wght@300;400;700&family=Inter:wght@400;700&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    .flag-svg {
-      width: 48px; height: 32px; 
-      border-radius: 4px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      display: block;
-      background: #000; 
-      object-fit: cover; 
-    }
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
     
-    .erasmus-country {
-      font-family: var(--title-font); font-size: 1.2rem; font-weight: 700;
-      color: var(--white); text-transform: uppercase; letter-spacing: 0.5px;
-    }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
-    /* BADGES */
-    .erasmus-type {
-      font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
-      padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1rem;
-      display: inline-block;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    .badge-ye { background-color: var(--cyber-yellow); color: #000; }
-    .badge-tc { background-color: var(--vivid-tangelo); color: #fff; }
-
-    .erasmus-desc { font-size: 1rem; color: #ddd; line-height: 1.6; }
-    .erasmus-figure { text-align: center; margin: 0 0 3rem 0; }
-    .erasmus-pic { width: 100%; max-width: 100%; border-radius: var(--border-radius); }
-
-    /* DISEÑO IDIOMAS */
-    .lang-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem; 
-      list-style: none !important; 
-      padding: 0 !important; 
-      margin-top: 1rem;
-    }
-    .lang-grid li { 
-      margin: 0 !important; 
-    }
-    .lang-grid li::before { content: none !important; }
-
-    .lang-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--border-radius);
-      padding: 1.5rem !important;
-      display: flex; flex-direction: column;
-    }
-
-    .lang-header {
-      display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;
-    }
-    
-    .lang-info h3 {
-      font-family: var(--body-font); font-weight: 700; font-size: 1.1rem;
-      margin: 0; color: var(--white);
-    }
-    .lang-level-text {
-      font-size: 0.9rem; color: var(--cyber-yellow); font-weight: 600;
-    }
-
-    .level-bar-bg {
-      width: 100%; height: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 4px; overflow: hidden;
-    }
-    .level-bar-fill {
-      height: 100%; 
-      background-color: var(--cyber-yellow);
-      border-radius: 4px;
-    }
-
-    /* Logo InHouse */
-    .inhouse-logo-container { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    .inhouse-svg { width: 55px; height: auto; color: var(--vivid-tangelo); }
-    .inhouse-text {
-      font-family: var(--logo-font); font-size: 1.05rem;
-      font-weight: 700; color: var(--white);
-      letter-spacing: -0.5px; text-transform: lowercase; 
-    }
-
-    footer { padding: 5rem 2rem; text-align: center; border-top: 1px solid var(--glass-border); opacity: 0.8; }
-    footer a { color: var(--vivid-tangelo); font-weight: 600; }
-
-    /* VISTA DIVIDIDA (PC) */
-    @media (min-width: 1024px) and (min-aspect-ratio: 1/1) {
-      body { display: flex; }
-      header { position: fixed; width: 45vw; height: 100vh; aspect-ratio: unset; }
-      main { margin-left: 45vw; width: 55vw; display: flex; justify-content: center; padding: 6rem 3rem; }
-      .content-wrapper { width: 100%; max-width: 780px; margin: 0; }
-      .scroll-bar { left: 45vw; width: 55vw; }
-      .title-box h1 { font-size: 4.8rem; }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="scroll-bar" id="scrollBar">
-    <h1 id="barTitle" data-i18n="doc_title_name">Miguel Cox Caballero</h1>
-  </div>
-
-  <div class="lang-switcher">
-    <button id="langSwitcher">🌐 ES</button>
-  </div>
-
-  <header>
-    <img src="assets/mig.gif" alt="Miguel Cox Caballero">
-    <div class="overlay"></div>
-    <div class="header-content">
-      <div class="title-box">
-        <h1 data-i18n="doc_title_name">Miguel Cox Caballero</h1>
-      </div>
-    </div>
-  </header>
-
-  <main id="mainContent">
-    <div class="content-wrapper">
-      
-      <section id="about">
-        <h2 data-i18n="about_h2">Acerca de mí</h2>
-        <p data-i18n="about_p">Estudiante de Ingeniería Informática (UMU) e Ingeniería Aeroespacial (UPV).</p>
-      </section>
-
-      <section id="achievements">
-        <h2 data-i18n="achi_h2">Logros Personales</h2>
-        <ul>
-          <li data-i18n="achi_1">Oro en la Olimpiada de Ingeniería IT de la UCAM.</li>
-          <li data-i18n="achi_2">Oro en la Olimpiada de Arquitectura Sostenible.</li>
-          <li data-i18n="achi_3">3º puesto en la Olimpiada Nacional de Arquitectura Sostenible.</li>
-        </ul>
-      </section>
-
-      <section id="languages">
-        <h2 data-i18n="lang_h2">Idiomas</h2>
-        
-        <ul class="lang-grid">
-          
-          <li class="lang-card">
-            <div class="lang-header">
-              <svg class="flag-svg" viewBox="0 0 750 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <rect width="750" height="500" fill="#c60b1e"/>
-                <rect width="750" height="250" y="125" fill="#ffc400"/>
-              </svg>
-              <div class="lang-info">
-                <h3 data-i18n="lang_1_name">Español</h3>
-                <span class="lang-level-text" data-i18n="lang_1_level">Nativo</span>
-              </div>
-            </div>
-            <div class="level-bar-bg">
-              <div class="level-bar-fill" style="width: 100%; background-color: var(--vivid-tangelo);"></div>
-            </div>
-          </li>
-
-          <li class="lang-card">
-            <div class="lang-header">
-              <svg class="flag-svg" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <clipPath id="t"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath>
-                <path d="M0,0 v30 h60 v-30 z" fill="#00247d"/>
-                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
-                <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#cf142b" stroke-width="4"/>
-                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
-                <path d="M30,0 v30 M0,15 h60" stroke="#cf142b" stroke-width="6"/>
-              </svg>
-              <div class="lang-info">
-                <h3 data-i18n="lang_2_name">Inglés</h3>
-                <span class="lang-level-text" data-i18n="lang_2_level">C2 (Cambridge CPE)</span>
-              </div>
-            </div>
-            <div class="level-bar-bg">
-              <div class="level-bar-fill" style="width: 100%; background-color: var(--vivid-tangelo);"></div>
-            </div>
-          </li>
-
-          <li class="lang-card">
-            <div class="lang-header">
-              <svg class="flag-svg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <rect width="900" height="600" fill="#fff"/>
-                <rect width="300" height="600" fill="#002395"/>
-                <rect x="600" width="300" height="600" fill="#ED2939"/>
-              </svg>
-              <div class="lang-info">
-                <h3 data-i18n="lang_3_name">Francés</h3>
-                <span class="lang-level-text" data-i18n="lang_3_level">B1 (EOI)</span>
-              </div>
-            </div>
-            <div class="level-bar-bg"><div class="level-bar-fill" style="width: 50%;"></div></div>
-          </li>
-
-          <li class="lang-card">
-            <div class="lang-header">
-              <svg class="flag-svg" viewBox="0 0 5 3" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <rect width="5" height="3" y="0" x="0" fill="#000"/>
-                <rect width="5" height="2" y="1" x="0" fill="#d00"/>
-                <rect width="5" height="1" y="2" x="0" fill="#ffce00"/>
-              </svg>
-              <div class="lang-info">
-                <h3 data-i18n="lang_4_name">Alemán</h3>
-                <span class="lang-level-text" data-i18n="lang_4_level">A1 (EOI)</span>
-              </div>
-            </div>
-            <div class="level-bar-bg"><div class="level-bar-fill" style="width: 25%;"></div></div>
-          </li>
-
-          <li class="lang-card">
-            <div class="lang-header">
-              <svg class="flag-svg" viewBox="0 0 1500 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <rect width="1500" height="1000" fill="#009246"/>
-                <rect x="500" width="1000" height="1000" fill="#fff"/>
-                <rect x="1000" width="500" height="1000" fill="#ce2b37"/>
-              </svg>
-              <div class="lang-info">
-                <h3 data-i18n="lang_5_name">Italiano</h3>
-                <span class="lang-level-text" data-i18n="lang_5_level">A2</span>
-              </div>
-            </div>
-            <div class="level-bar-bg"><div class="level-bar-fill" style="width: 35%;"></div></div>
-          </li>
-
-          <li class="lang-card">
-            <div class="lang-header">
-              <svg class="flag-svg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <rect width="900" height="600" fill="#fcdd09"/>
-                <rect y="60" width="900" height="60" fill="#da121a"/>
-                <rect y="180" width="900" height="60" fill="#da121a"/>
-                <rect y="300" width="900" height="60" fill="#da121a"/>
-                <rect y="420" width="900" height="60" fill="#da121a"/>
-              </svg>
-              <div class="lang-info">
-                <h3 data-i18n="lang_6_name">Catalán</h3>
-                <span class="lang-level-text" data-i18n="lang_6_level">A1</span>
-              </div>
-            </div>
-            <div class="level-bar-bg"><div class="level-bar-fill" style="width: 20%;"></div></div>
-          </li>
-
-        </ul>
-      </section>
-
-      <section id="proyectos">
-        <h2 data-i18n="proj_h2">Proyectos</h2>
-        <ul class="project-grid">
-          <li>
-            <a class="project-card" href="https://raw.githack.com/miguelcoxcaballero/inhouse-software/main/inhouse.html" target="_blank">
-              <div class="inhouse-logo-container">
-                <svg class="inhouse-svg" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="5">
-                  <path d="M5 55 L50 10 L95 55" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span class="inhouse-text">inhouse software</span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a class="project-card" href="https://github.com/miguelcoxcaballero/antenahechaamano" target="_blank">
-              <span data-i18n="proj_1">IDIES Antena Hecha a Mano</span>
-            </a>
-          </li>
-          <li>
-            <a class="project-card" href="https://github.com/miguelcoxcaballero/creaciondeundronautonomo" target="_blank">
-              <span data-i18n="proj_2">Dron Autónomo (Visión)</span>
-            </a>
-          </li>
-          <li>
-            <a class="project-card" href="https://sites.google.com/view/loskelvin/home" target="_blank">
-              <span data-i18n="proj_3">Olimpiada Edificación</span>
-            </a>
-          </li>
-          <li>
-            <a class="project-card" href="https://www.youtube.com/channel/UCpbIWsLwqpKsfstcKZkJWkA" target="_blank">
-              <span data-i18n="proj_7">MIGRANTE / HABITANTE</span>
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <section id="erasmus">
-        <h2 data-i18n="erasmus_h2">Movilidad ERASMUS+</h2>
-        <figure class="erasmus-figure">
-          <img class="erasmus-pic" src="assets/erasmus.png" alt="ERASMUS+" loading="lazy">
-        </figure>
-        
-        <ul class="erasmus-grid">
-          
-          <li class="erasmus-card">
-            <div class="erasmus-header">
-              <svg class="flag-svg" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <rect width="900" height="600" fill="#fff"/>
-                <rect width="900" height="300" y="300" fill="#d7141a"/>
-                <path d="M0 0l450 300L0 600" fill="#11457e"/>
-              </svg>
-              <span class="erasmus-country" data-i18n="erasmus_1_country">CHEQUIA</span>
-            </div>
-            <span class="erasmus-type badge-ye">Youth Exchange</span>
-            <p class="erasmus-desc" data-i18n="erasmus_1_desc">Herencia cultural europea.</p>
-          </li>
-          
-          <li class="erasmus-card">
-            <div class="erasmus-header">
-              <svg class="flag-svg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <rect width="1000" height="300" fill="#002b7f"/>
-                <rect y="300" width="1000" height="300" fill="#ce1126"/>
-                <path d="M166 100l25-50 25 50 25-50 25 50 25-50v100H166z" fill="#ffd700"/>
-              </svg>
-              <span class="erasmus-country" data-i18n="erasmus_2_country">LIECHTENSTEIN</span>
-            </div>
-            <span class="erasmus-type badge-ye">Youth Exchange</span>
-            <p class="erasmus-desc" data-i18n="erasmus_2_desc">Vida sostenible y contacto con la naturaleza.</p>
-          </li>
-
-          <li class="erasmus-card">
-            <div class="erasmus-header">
-              <svg class="flag-svg" viewBox="0 0 16 10" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <rect width="16" height="10" fill="#fff"/>
-                <rect y="5" width="16" height="5" fill="#dc143c"/>
-              </svg>
-              <span class="erasmus-country" data-i18n="erasmus_3_country">POLONIA</span>
-            </div>
-            <span class="erasmus-type badge-tc">Training Course</span>
-            <p class="erasmus-desc" data-i18n="erasmus_3_desc">IA, ciberseguridad y networking.</p>
-          </li>
-
-          <li class="erasmus-card">
-            <div class="erasmus-header">
-              <svg class="flag-svg" viewBox="0 0 16 10" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <rect width="16" height="10" fill="#fff"/>
-                <rect y="5" width="16" height="5" fill="#dc143c"/>
-              </svg>
-              <span class="erasmus-country" data-i18n="erasmus_4_country">POLONIA</span>
-            </div>
-            <span class="erasmus-type badge-tc">Training Course</span>
-            <p class="erasmus-desc" data-i18n="erasmus_4_desc">Mindful Trails y salud mental.</p>
-          </li>
-
-          <li class="erasmus-card">
-            <div class="erasmus-header">
-              <svg class="flag-svg" viewBox="0 0 1500 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <rect width="500" height="1000" fill="#009246"/>
-                <rect x="500" width="500" height="1000" fill="#fff"/>
-                <rect x="1000" width="500" height="1000" fill="#ce2b37"/>
-              </svg>
-              <span class="erasmus-country" data-i18n="erasmus_5_country">ITALIA</span>
-            </div>
-            <span class="erasmus-type badge-ye">Youth Exchange</span>
-            <p class="erasmus-desc" data-i18n="erasmus_5_desc">TechWise Youth: IA y tecnología.</p>
-          </li>
-
-          <li class="erasmus-card">
-            <div class="erasmus-header">
-              <svg class="flag-svg" viewBox="0 0 5 3" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <rect width="5" height="3" y="0" x="0" fill="#000"/>
-                <rect width="5" height="2" y="1" x="0" fill="#d00"/>
-                <rect width="5" height="1" y="2" x="0" fill="#ffce00"/>
-              </svg>
-              <span class="erasmus-country" data-i18n="erasmus_6_country">ALEMANIA</span>
-            </div>
-            <span class="erasmus-type badge-tc">Training Course</span>
-            <p class="erasmus-desc" data-i18n="erasmus_6_desc">PeaceUp! Resolución de conflictos.</p>
-          </li>
-
-          <li class="erasmus-card">
-            <div class="erasmus-header">
-              <svg class="flag-svg" viewBox="0 0 5 3" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <rect width="5" height="3" y="0" x="0" fill="#000"/>
-                <rect width="5" height="2" y="1" x="0" fill="#d00"/>
-                <rect width="5" height="1" y="2" x="0" fill="#ffce00"/>
-              </svg>
-              <span class="erasmus-country" data-i18n="erasmus_7_country">ALEMANIA</span>
-            </div>
-            <span class="erasmus-type badge-ye">Youth Exchange</span>
-            <p class="erasmus-desc" data-i18n="erasmus_7_desc">Digital Detox y reconexión natural.</p>
-          </li>
-
-          <li class="erasmus-card">
-            <div class="erasmus-header">
-              <svg class="flag-svg" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-                <rect width="600" height="100" fill="#ce2939"/>
-                <rect y="100" width="600" height="100" fill="#fff"/>
-                <rect y="200" width="600" height="100" fill="#477050"/>
-              </svg>
-              <span class="erasmus-country" data-i18n="erasmus_8_country">HUNGRÍA</span>
-            </div>
-            <span class="erasmus-type badge-ye">Youth Exchange</span>
-            <p class="erasmus-desc" data-i18n="erasmus_8_desc">Youth Council Exchange: trabajo en equipo, creatividad.</p>
-          </li>
-        </ul>
-      </section>
-
-      <section id="congress">
-        <h2 data-i18n="conf_h2">Congresos</h2>
-        <ul>
-          <li data-i18n="conf_1">Asistencia al XXXII congreso de la Asociación de Estudiantes de Aeronáutica y Espacio de 2025 en León.</li>
-          <li data-i18n="conf_2">Asistencia al I Congreso Ibérico de EUROAVIA.</li>
-        </ul>
-      </section>
-
-      <footer>
-        <p data-i18n="footer_copy">© 2025 Miguel Cox Caballero.</p>
-        <p><a href="https://www.instagram.com/miguelcoxcaballero" target="_blank">@miguelcoxcaballero</a></p>
-      </footer>
-
-    </div>
-  </main>
-
-  <script>
-    const I18N = {
-      es: {
-        doc_title_name: 'Miguel Cox Caballero',
-        about_h2 : 'Acerca de mí',
-        about_p  : 'Estudiante de Ingeniería Informática (UMU) e Ingeniería Aeroespacial (UPV).',
-        achi_h2  : 'Logros Personales',
-        achi_1   : 'Oro en la Olimpiada de Ingeniería IT de la UCAM.',
-        achi_2   : 'Oro en la Olimpiada de Arquitectura Sostenible.',
-        achi_3   : '3º puesto en la Olimpiada Nacional de Arquitectura Sostenible.',
-        lang_h2  : 'Idiomas',
-        
-        // IDIOMAS (Separados Nombre y Nivel para el Grid)
-        lang_1_name: 'Español',
-        lang_1_level: 'Nativo',
-        lang_2_name: 'Inglés',
-        lang_2_level: 'C2 (Cambridge CPE)',
-        lang_3_name: 'Francés',
-        lang_3_level: 'B1 (EOI)',
-        lang_4_name: 'Alemán',
-        lang_4_level: 'A1 (EOI)',
-        lang_5_name: 'Italiano',
-        lang_5_level: 'A2',
-        lang_6_name: 'Catalán',
-        lang_6_level: 'A1',
-
-        proj_h2  : 'Proyectos',
-        proj_1   : 'IDIES Antena Hecha a Mano',
-        proj_2   : 'Guiado de drone por visión computacional',
-        proj_3   : 'Olimpiada de edificación (Los Kelvin)',
-        proj_7   : 'MIGRANTE / HABITANTE (Becas Europa UFV)',
-        
-        erasmus_h2: 'Movilidad ERASMUS+',
-        // Países
-        erasmus_1_country: 'CHEQUIA',
-        erasmus_2_country: 'LIECHTENSTEIN',
-        erasmus_3_country: 'POLONIA',
-        erasmus_4_country: 'POLONIA',
-        erasmus_5_country: 'ITALIA',
-        erasmus_6_country: 'ALEMANIA',
-        erasmus_7_country: 'ALEMANIA',
-        erasmus_8_country: 'HUNGRÍA',
-        // Descripciones
-        erasmus_1_desc : 'Herencia cultural europea.',
-        erasmus_2_desc : 'Vida sostenible y contacto directo con la naturaleza.',
-        erasmus_3_desc : 'IA, ciberseguridad y networking con otros profesionales.',
-        erasmus_4_desc : 'Mindful Trails sobre salud mental y bienestar.',
-        erasmus_5_desc : 'TechWise Youth sobre IA y comprensión tecnológica entre la juventud.',
-        erasmus_6_desc : 'PeaceUp! sobre habilidades de resolución de conflictos y CNV.',
-        erasmus_7_desc : 'Digital Detox sobre uso adecuado de la tecnología y reconexión con la naturaleza.',
-        erasmus_8_desc : 'Youth Council Exchange: trabajo en equipo, creatividad y resolución de problemas.',
-
-        conf_h2   : 'Congresos',
-        conf_1    : 'Asistencia al XXXII congreso de la Asociación de Estudiantes de Aeronáutica y Espacio de 2025 en León.',
-        conf_2    : 'Asistencia al I Congreso Ibérico de EUROAVIA.',
-        footer_copy  : '© 2025 Miguel Cox Caballero. Todos los derechos reservados.'
-      },
-      en: {
-        doc_title_name: 'Miguel Cox Caballero',
-        about_h2 : 'About Me',
-        about_p  : 'Student of Computer Engineering (UMU) and Aerospace Engineering (UPV).',
-        achi_h2  : 'Personal Achievements',
-        achi_1   : 'Gold medal in the UCAM IT Engineering Olympiad.',
-        achi_2   : 'Gold medal in the Sustainable Architecture Olympiad.',
-        achi_3   : '3rd place in the National Sustainable Architecture Olympiad.',
-        lang_h2  : 'Languages',
-        
-        // IDIOMAS EN
-        lang_1_name: 'Spanish',
-        lang_1_level: 'Native',
-        lang_2_name: 'English',
-        lang_2_level: 'C2 (Cambridge CPE)',
-        lang_3_name: 'French',
-        lang_3_level: 'B1 (EOI)',
-        lang_4_name: 'German',
-        lang_4_level: 'A1 (EOI)',
-        lang_5_name: 'Italian',
-        lang_5_level: 'A2',
-        lang_6_name: 'Catalan',
-        lang_6_level: 'A1',
-
-        proj_h2  : 'Projects',
-        proj_1   : 'IDIES Handmade Antenna',
-        proj_2   : 'Drone guidance with computer vision',
-        proj_3   : 'Building Olympiad (Los Kelvin)',
-        proj_7   : 'MIGRANTE / HABITANTE (UFV Europe Scholarships)',
-        
-        erasmus_h2: 'ERASMUS+ Mobility',
-        // Countries
-        erasmus_1_country: 'CZECHIA',
-        erasmus_2_country: 'LIECHTENSTEIN',
-        erasmus_3_country: 'POLAND',
-        erasmus_4_country: 'POLAND',
-        erasmus_5_country: 'ITALY',
-        erasmus_6_country: 'GERMANY',
-        erasmus_7_country: 'GERMANY',
-        erasmus_8_country: 'HUNGARY',
-        // Descriptions
-        erasmus_1_desc : 'European cultural heritage.',
-        erasmus_2_desc : 'Sustainable living and direct contact with nature.',
-        erasmus_3_desc : 'AI, cybersecurity and networking with like-minded professionals.',
-        erasmus_4_desc : 'Mindful Trails about mental health and wellbeing.',
-        erasmus_5_desc : 'TechWise Youth about AI and technology understanding among the youth.',
-        erasmus_6_desc : 'PeaceUp! about conflict solving skills and NVC.',
-        erasmus_7_desc : 'Digital Detox about proper use of technology and reconnecting with nature.',
-        erasmus_8_desc : 'Youth Council Exchange: teamwork, creativity, and problem-solving abilities.',
-
-        conf_h2   : 'Conferences',
-        conf_1    : 'Attendance at the 2025 XXXII Congress of the Spanish Aeronautics and Space Students Association in León.',
-        conf_2    : 'Attendance at the I Iberian Congress of EUROAVIA.',
-        footer_copy  : '© 2025 Miguel Cox Caballero. All rights reserved.'
-      }
-    };
-
-    function updateLang(lang) {
-      const dict = I18N[lang] || I18N.es;
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (dict[key]) {
-          if (el.getAttribute('data-i18n-html') === 'true') el.innerHTML = dict[key];
-          else el.textContent = dict[key];
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#000000',
+                            copper: '#d97736', 
+                            cream: '#f5f5f0',
+                            googleBlue: '#0b57d0',
+                            googleDark: '#1f1f1f',
+                            googleGray: '#444746',
+                            typeTestBg: '#141414', /* Darker background */
+                            typeTestGreen: '#66BB6A',
+                            poliBg: '#0b0f14',
+                            poliText: '#e8ecf1',
+                            pomodoroRed: '#cc0000', /* Matching the egg pointer */
+                            pomodoroBg: '#ffffff', // White background for Pomodoro
+                        }
+                    },
+                    fontFamily: {
+                        'logo': ['"Comfortaa"', 'cursive'],
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'body': ['"Lato"', 'sans-serif'],
+                        'handwriting': ['"Caveat"', 'cursive'],
+                        'montserrat': ['"Montserrat"', 'sans-serif'],
+                        'roboto': ['"Roboto"', 'sans-serif'],
+                        'inter': ['"Inter"', 'sans-serif'],
+                        'mono': ['"Roboto Mono"', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'nouveau-pattern': "url('data:image/svg+xml,%3Csvg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cpath d=\"M20 20.125c0-1.25.75-2.25 2-2.25s2 1 2 2.25-.75 2.25-2 2.25-2-1-2-2.25zM10 30.125c0-1.25.75-2.25 2-2.25s2 1 2 2.25-.75 2.25-2 2.25-2-1-2-2.25zM30 30.125c0-1.25.75-2.25 2-2.25s2 1 2 2.25-.75 2.25-2 2.25-2-1-2-2.25z\" fill=\"%23d97736\" fill-opacity=\"0.03\" fill-rule=\"evenodd\"/%3E%3C/svg%3E')"
+                    }
+                }
+            }
         }
-      });
-      document.getElementById('langSwitcher').textContent = '🌐 ' + lang.toUpperCase();
-      document.documentElement.lang = lang;
-      localStorage.setItem('lang', lang);
-    }
+    </script>
 
-    document.getElementById('langSwitcher').addEventListener('click', () => {
-      const current = localStorage.getItem('lang') || 'es';
-      updateLang(current === 'es' ? 'en' : 'es');
-    });
+    <style>
+        /* --- CUSTOM SCROLLBAR --- */
+        ::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+        ::-webkit-scrollbar { width: 14px; height: 14px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            box-shadow: inset 0 0 0 2px #555555; 
+            border-radius: 20px;
+            border: 4px solid transparent;
+            background-clip: content-box;
+        }
+        ::-webkit-scrollbar-thumb:hover { box-shadow: inset 0 0 0 2px #888888; }
+        
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: #555555 transparent;
+            scroll-behavior: auto; /* JS handles smooth scroll */
+            background-color: #000000;
+        }
 
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      const height = Math.min(y / 10, 48);
-      document.getElementById('scrollBar').style.height = height + 'px';
-      document.getElementById('barTitle').style.opacity = y > 400 ? '1' : '0';
-    });
+        body { background-color: #000000; }
 
-    updateLang(localStorage.getItem('lang') || 'es');
-  </script>
+        /* Video-Like Canvas Layer */
+        #wave-canvas {
+            position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: 0; pointer-events: none; transition: opacity 1s ease-out;
+        }
+
+        /* Texture Layer */
+        .texture-layer {
+            position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            opacity: 0; pointer-events: none; z-index: -1; mix-blend-mode: overlay;
+        }
+
+        /* GPU Acceleration for smoother animation */
+        #intro-scale-wrapper {
+            will-change: transform, opacity;
+            transform: translate3d(0,0,0);
+            backface-visibility: hidden;
+        }
+
+        .reveal-element { opacity: 0; transition: opacity 1.5s ease-out; }
+        .reveal-element.visible { opacity: 1; }
+
+        #bg-light-caster {
+            position: absolute; top: 50%; left: 50%; width: 250px; height: 250px;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(217,119,54,0.1) 40%, transparent 70%);
+            border-radius: 50%; filter: blur(60px); transform: translate(-50%, -50%); pointer-events: none; z-index: 0; opacity: 0;
+        }
+
+        /* Products start below zoom section */
+        #products { margin-top: -80vh; opacity: 0; pointer-events: none; transition: opacity 0.1s linear; }
+        #products.active { pointer-events: auto; }
+        
+        .material-symbols-rounded {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+        }
+
+        @keyframes rainbowSlide {
+            0% { background-position: 0% 50% }
+            100% { background-position: 200% 50% }
+        }
+        
+        .poli-trauma-text {
+            background: linear-gradient(90deg,#ff0040,#ff7a00,#ffd400,#00d17a,#0096ff,#9b5cff,#ff3cd1);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbowSlide 6s linear infinite;
+        }
+    </style>
+</head>
+<body class="text-brand-cream font-body overflow-x-hidden selection:bg-brand-copper selection:text-white">
+
+    <div class="texture-layer"></div>
+
+    <nav id="main-nav" class="fixed w-full z-50 bg-brand-black/90 backdrop-blur-md border-b border-brand-copper/30 opacity-0 transition-opacity duration-700 pointer-events-none">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <svg class="h-8 w-10 text-brand-copper" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="4">
+                        <path d="M5 55 L50 10 L95 55" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="font-logo font-bold text-xl tracking-tight text-white lowercase ml-1">inhouse software</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="intro-wrapper" class="relative" style="height: 180vh;">
+        <div class="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-nouveau-pattern opacity-5 pointer-events-none"></div>
+            <div id="intro-scale-wrapper" class="relative z-10 text-center px-4 max-w-4xl mx-auto origin-center">
+                <div id="bg-light-caster"></div>
+                <div class="mx-auto w-48 h-32 mb-1 relative overflow-visible flex items-center justify-center z-10">
+                    <svg viewBox="0 0 100 60" class="w-full h-full drop-shadow-[0_0_20px_rgba(217,119,54,0.15)]">
+                        <defs>
+                            <linearGradient id="soft-shine-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="black" />
+                                <stop offset="30%" stop-color="#444" />
+                                <stop offset="50%" stop-color="white" />
+                                <stop offset="70%" stop-color="#444" />
+                                <stop offset="100%" stop-color="black" />
+                            </linearGradient>
+                            <mask id="shine-mask">
+                                <rect x="-50" y="-50" width="200" height="200" fill="black" />
+                                <rect id="shine-mover" x="-150" y="-50" width="100" height="200" fill="url(#soft-shine-gradient)" transform="skewX(-25)"></rect>
+                            </mask>
+                        </defs>
+                        <path d="M5 55 L50 10 L95 55" stroke="#d97736" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5 55 L50 10 L95 55" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" mask="url(#shine-mask)" opacity="1"/>
+                    </svg>
+                </div>
+                <div id="hero-content" class="reveal-element z-10 relative">
+                    <h1 class="font-logo font-bold text-5xl md:text-7xl mb-12 text-white tracking-tighter leading-none lowercase">
+                        <span class="block">inhouse</span>
+                        <span class="block">software</span>
+                    </h1>
+                    <div id="scroll-prompt" class="text-brand-cream/30 mt-32 transition-opacity duration-500">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="products" class="py-32 relative overflow-hidden reveal-section z-20 min-h-[80vh] flex flex-col justify-center">
+        
+        <canvas id="wave-canvas"></canvas>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            
+            <div id="products-header" class="flex items-center justify-between mb-16">
+                <h2 class="font-logo text-4xl text-white tracking-wide">Products</h2>
+                <div class="h-px bg-white flex-grow ml-8"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-center justify-items-center">
+
+                <!-- Scanner Card -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/scan/main/index.html" target="_blank" 
+                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.3)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] no-underline cursor-pointer">
+                    
+                    <div class="mb-4 flex justify-center">
+                        <span class="material-symbols-rounded text-brand-copper" style="font-size: 84px;">
+                            document_scanner
+                        </span>
+                    </div>
+                    <h3 class="font-roboto text-[34px] leading-tight text-brand-googleDark font-normal tracking-tight">
+                        Scanner
+                    </h3>
+                </a>
+
+                <!-- Wonderxam Card -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/wonderxam/main/wonderxam.html" target="_blank" 
+                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(124,58,237,0.4)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-purple-300 no-underline cursor-pointer">
+                    
+                    <div class="mb-4 flex justify-center">
+                        <span class="material-symbols-rounded text-[#7c3aed]" style="font-size: 84px;">
+                            school
+                        </span>
+                    </div>
+                    <h3 class="font-roboto text-[34px] leading-tight text-brand-googleDark font-normal tracking-tight">
+                        Wonderxam
+                    </h3>
+                </a>
+
+                <!-- Metro Studio Card -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/metro-studio/main/metro.html" target="_blank" 
+                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(26,115,232,0.4)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-blue-300 no-underline cursor-pointer">
+                    
+                    <div class="mb-4 flex justify-center">
+                        <svg class="w-[84px] h-[84px] text-[#1a73e8]" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.8 4.8C16.07 3.74 14.12 3.5 12 3.5c-2.12 0-4.07.24-5.8 1.3C4.24 6.03 3.5 8.05 3.5 10.5v6c0 2.56 1.92 4.67 4.41 4.95L6.5 23h11l-1.41-1.55c2.49-.28 4.41-2.39 4.41-4.95v-6c0-2.45-.74-4.47-2.7-5.7zM7.5 17.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm11-6.5h-13V8h13v3zm-2 6.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-roboto text-[34px] leading-tight text-brand-googleDark font-normal tracking-tight">
+                        Metro Studio
+                    </h3>
+                </a>
+
+                <!-- Maps Card -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/maps/main/maps.html" target="_blank" 
+                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(64,140,80,0.5)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-[#408c50] no-underline cursor-pointer">
+                    
+                    <div class="mb-4 flex justify-center">
+                        <svg class="w-[84px] h-[84px] text-[#408c50]" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M30 80 V50 A20 20 0 0 1 50 30 H80" />
+                            <path d="M65 15 L80 30 L65 45" />
+                        </svg>
+                    </div>
+                    <h3 class="font-roboto text-[34px] leading-tight text-brand-googleDark font-normal tracking-tight">
+                        Maps
+                    </h3>
+                </a>
+
+                <!-- TypeTest Card -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/TypeTest/main/TypeTest.html" target="_blank" 
+                    class="group relative flex flex-col items-center justify-center bg-brand-typeTestBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.8)] shadow-[0_8px_20px_rgba(0,0,0,0.6)] border border-[#333] hover:border-brand-typeTestGreen/50 no-underline cursor-pointer">
+                    
+                    <div class="mb-4 flex justify-center">
+                        <span class="material-symbols-rounded text-brand-typeTestGreen drop-shadow-[0_0_8px_rgba(102,187,106,0.6)]" style="font-size: 84px;">
+                            keyboard_alt
+                        </span>
+                    </div>
+                    <h3 class="font-logo text-[44px] leading-tight text-[#E0E0E0] font-bold tracking-tight drop-shadow-[0_0_5px_rgba(255,255,255,0.2)]">
+                        TypeTest
+                    </h3>
+                </a>
+
+                <!-- Egg Timer Card -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/eggtimer/main/egg.html" target="_blank" 
+                    class="group relative flex flex-col items-center justify-center bg-brand-pomodoroBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-gray-300 no-underline cursor-pointer">
+                    
+                    <div class="mb-4 flex justify-center">
+                        <!-- Fried Egg SVG Icon (Smoother top, smaller yolk) -->
+                        <svg class="w-[100px] h-[100px]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <title>Fried Egg Timer</title>
+                            <!-- Egg White -->
+                            <path
+                                d="M50 92
+                                   C 26 92, 18 70, 32 44
+                                   C 40 26, 60 26, 68 44
+                                   C 82 70, 74 92, 50 92 Z"
+                                fill="#ffffff"
+                                stroke="#e0e0e0"
+                                stroke-width="2"
+                            />
+                            <!-- Yolk -->
+                            <circle cx="50" cy="60" r="14" fill="#FFC107"/>
+                            <!-- Red Pointer -->
+                            <polygon points="50,45 55,60 45,60" fill="#cc0000"
+                                     transform="translate(0, 5) rotate(15, 50, 55)" />
+                        </svg>
+                    </div>
+                    <h3 class="font-handwriting text-5xl leading-tight text-brand-googleDark font-bold tracking-tight mt-2">
+                        Egg Timer
+                    </h3>
+                </a>
+
+                <!-- Politraumat Card -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/politraumat/main/politraumat.html" target="_blank" 
+                    class="group relative flex flex-col items-center justify-center bg-brand-poliBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-5px_rgba(0,0,0,0.9)] shadow-[0_10px_30px_rgba(0,0,0,0.35)] border border-[#223046] hover:border-[#2a3a4f] no-underline cursor-pointer">
+                    
+                    <div class="mb-4 flex justify-center">
+                        <span class="material-symbols-rounded text-white" style="font-size: 84px;">
+                            style
+                        </span>
+                    </div>
+                    
+                    <h3 class="text-[36px] leading-tight tracking-tight font-extrabold flex items-center justify-center gap-1">
+                        <span class="text-white tracking-[0.14px]">poli</span>
+                        <span class="poli-trauma-text tracking-[0.2px]">[traumaT]</span>
+                    </h3>
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-brand-black py-12 relative z-20 reveal-section w-full border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                <svg class="h-5 w-8 text-brand-copper" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="4">
+                    <path d="M5 55 L50 10 L95 55" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <!-- FIXED: Changed font class and tracking class -->
+                <span class="font-logo text-xs text-brand-cream/40 tracking-tight">inhouse software &copy; 2025</span>
+            </div>
+            <div class="flex gap-10 items-center">
+                <a href="https://instagram.com/miguelcoxcaballero" target="_blank" class="group flex items-center gap-2 text-brand-cream/40 hover:text-brand-copper transition-colors text-xs uppercase tracking-widest">
+                    <i class="fab fa-instagram text-lg group-hover:scale-110 transition-transform"></i> Instagram
+                </a>
+                <a href="https://github.com/miguelcoxcaballero" target="_blank" class="group flex items-center gap-2 text-brand-cream/40 hover:text-brand-copper transition-colors text-xs uppercase tracking-widest">
+                    <i class="fab fa-github text-lg group-hover:scale-110 transition-transform"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const nav = document.getElementById('main-nav');
+        const heroContent = document.getElementById('hero-content');
+        const scrollPrompt = document.getElementById('scroll-prompt');
+        const shineMover = document.getElementById('shine-mover');
+        const textureLayer = document.querySelector('.texture-layer');
+        const waveCanvas = document.getElementById('wave-canvas');
+        const introScaleWrapper = document.getElementById('intro-scale-wrapper');
+        const introWrapper = document.getElementById('intro-wrapper');
+        const bgLightCaster = document.getElementById('bg-light-caster');
+        const productsSection = document.getElementById('products');
+        
+        const productsHeader = document.getElementById('products-header');
+        const productCard = document.querySelector('#products a.group');
+
+        // --- 1. SMART AUTO-SCROLL LOGIC (0.75x SPEED) ---
+        let lastScrollTop = 0;
+        let isAutoScrolling = false;
+        
+        function smoothScrollTo(targetPosition, duration) {
+            const startPosition = window.scrollY;
+            const distance = targetPosition - startPosition;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const progress = Math.min(timeElapsed / duration, 1);
+                
+                const ease = progress < 0.5 
+                    ? 4 * progress * progress * progress 
+                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+                window.scrollTo(0, startPosition + (distance * ease));
+
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animation);
+                } else {
+                    isAutoScrolling = false;
+                }
+            }
+
+            requestAnimationFrame(animation);
+        }
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.scrollY;
+            const threshold = 10; 
+            const triggerZoneLimit = 300; 
+            
+            if (currentScroll > lastScrollTop && !isAutoScrolling) {
+                if (currentScroll > threshold && currentScroll < triggerZoneLimit) {
+                    const navHeight = 80;
+                    const breathingRoom = 40;
+                    const elementPosition = productsHeader.getBoundingClientRect().top + window.scrollY;
+                    const destination = elementPosition - navHeight - breathingRoom;
+
+                    isAutoScrolling = true;
+                    smoothScrollTo(destination, 1600); 
+                }
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
+        // --- FLUID WAVE ANIMATION SETUP ---
+        const ctx = waveCanvas.getContext('2d');
+        let width, height;
+        let waves = [];
+
+        function initWaves() {
+            if (!productsSection) return;
+
+            const sectionRect = productsSection.getBoundingClientRect();
+            width = sectionRect.width;
+            height = sectionRect.height || window.innerHeight;
+
+            waveCanvas.width = width;
+            waveCanvas.height = height;
+
+            let baseY;
+            const cardRow = productsSection.querySelector('.grid');
+            if (cardRow) {
+                const cardRect = cardRow.getBoundingClientRect();
+                const relativeBottom = cardRect.bottom - sectionRect.top;
+                baseY = Math.min(relativeBottom + 60, height * 0.95);
+            } else {
+                baseY = height * 0.75;
+            }
+
+            waves = [
+                { y: baseY,     length: 0.003, amplitude: 60, speed: 0.007, offset: 0, color: 'rgba(217, 119, 54, 0.15)' },
+                { y: baseY + 25, length: 0.005, amplitude: 40, speed: 0.012, offset: 2, color: 'rgba(217, 119, 54, 0.3)' },
+                { y: baseY + 45, length: 0.007, amplitude: 25, speed: 0.02,  offset: 4, color: 'rgba(255, 255, 255, 0.05)' }
+            ];
+        }
+
+        function drawWaves() {
+            if (!width || !height) return;
+
+            ctx.clearRect(0, 0, width, height);
+
+            waves.forEach(wave => {
+                ctx.beginPath();
+                ctx.moveTo(0, height);
+                ctx.lineTo(0, wave.y);
+
+                for (let x = 0; x < width; x++) {
+                    const y = wave.y + Math.sin(x * wave.length + wave.offset) * wave.amplitude;
+                    ctx.lineTo(x, y);
+                }
+
+                ctx.lineTo(width, height);
+                ctx.closePath();
+                
+                const gradient = ctx.createLinearGradient(0, 0, 0, height);
+                gradient.addColorStop(0, "rgba(0,0,0,0)");
+                gradient.addColorStop(0.5, wave.color);
+                gradient.addColorStop(1, "rgba(0,0,0,0.8)");
+                
+                ctx.fillStyle = gradient;
+                ctx.fill();
+
+                wave.offset += wave.speed;
+            });
+
+            requestAnimationFrame(drawWaves);
+        }
+
+        initWaves();
+        drawWaves();
+        window.addEventListener('resize', initWaves);
+
+        // --- INTRO REVEAL ---
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                heroContent.classList.add('visible');
+            }, 100);
+        });
+
+        // --- SCROLL ANIMATION VISUALS ---
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const totalDistance = (introWrapper.offsetHeight - window.innerHeight) || 1;
+            const progress = Math.min(Math.max(scrollY / totalDistance, 0), 1);
+
+            // 1. Lighting
+            const lightEnd = 0.35;
+            if (progress <= lightEnd) {
+                const lp = progress / lightEnd;
+                const eased = lp * lp * (3 - 2 * lp);
+                const startX = -80; const endX = 80;
+                const currentX = startX + eased * (endX - startX);
+                shineMover.setAttribute('x', currentX);
+                const bgX = -40 + eased * 80;
+                bgLightCaster.style.transform = `translate(calc(-50% + ${bgX}px), -50%)`;
+                bgLightCaster.style.opacity = 0.6 * eased;
+            } else {
+                const fadeOut = Math.min((progress - lightEnd) / 0.25, 1);
+                bgLightCaster.style.opacity = 0.6 * (1 - fadeOut);
+            }
+
+            // 2. Zoom & Fade
+            const zoomStart = 0.1; 
+            const zoomEnd = 0.65; 
+
+            let scaleVal = 1; let translateY = 0; let opacityVal = 1;
+
+            if (progress <= zoomStart) {
+                const p = progress / zoomStart;
+                const eased = p * p * (3 - 2 * p);
+                scaleVal = 1 + eased * 0.12;        
+                translateY = -eased * 20;           
+                opacityVal = 1;
+            } else if (progress < zoomEnd) {
+                const p = (progress - zoomStart) / (zoomEnd - zoomStart);
+                const eased = p * p;
+                scaleVal = 1.12 + eased * 5; 
+                translateY = -20 - eased * 250;
+                opacityVal = 1 - eased;
+            } else {
+                scaleVal = 6;
+                translateY = -270;
+                opacityVal = 0;
+            }
+            
+            introScaleWrapper.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scaleVal})`;
+            introScaleWrapper.style.opacity = opacityVal;
+
+            // 3. Products Transition
+            const transitionStart = 0.8;
+            const transitionEnd = 1.0;
+
+            if (progress < transitionStart) {
+                waveCanvas.style.opacity = '0';
+                textureLayer.style.opacity = '0';
+                productsSection.style.opacity = '0';
+                productsSection.classList.remove('active');
+                nav.classList.remove('opacity-100', 'pointer-events-auto');
+                nav.classList.add('opacity-0', 'pointer-events-none');
+                scrollPrompt.style.opacity = (progress < 0.15) ? '1' : '0';
+            } else {
+                const transProgress = Math.min((progress - transitionStart) / (transitionEnd - transitionStart), 1);
+                waveCanvas.style.opacity = transProgress;
+                textureLayer.style.opacity = transProgress;
+                productsSection.style.opacity = transProgress;
+                if (transProgress > 0.1) productsSection.classList.add('active');
+
+                if (transProgress > 0.4) {
+                    nav.classList.remove('opacity-0', 'pointer-events-none');
+                    nav.classList.add('opacity-100', 'pointer-events-auto');
+                } else {
+                    nav.classList.remove('opacity-100', 'pointer-events-auto');
+                    nav.classList.add('opacity-0', 'pointer-events-none');
+                }
+                scrollPrompt.style.opacity = '0';
+            }
+        });
+    </script>
 </body>
 </html>
