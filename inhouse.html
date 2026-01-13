@@ -33,6 +33,7 @@
                             poliText: '#e8ecf1',
                             pomodoroRed: '#cc0000', /* Matching the egg pointer */
                             pomodoroBg: '#ffffff', // White background for Pomodoro
+                            rendezGreen: '#16a34a', // Added for RendezPlan
                         }
                     },
                     fontFamily: {
@@ -160,7 +161,7 @@
                             </linearGradient>
                             <mask id="shine-mask">
                                 <rect x="-50" y="-50" width="200" height="200" fill="black" />
-                                <rect id="shine-mover" x="-150" y="-50" width="100" height="200" fill="url(#soft-shine-gradient)" transform="skewX(-25)"></rect>
+                                <rect id="shine-mover" x="-150" y="-50" width="100" height="200" fill="url(#soft-shine-gradient)" transform="skewX(-25)"></mask>
                             </mask>
                         </defs>
                         <path d="M5 55 L50 10 L95 55" stroke="#d97736" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -193,7 +194,6 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-center justify-items-center">
 
-                <!-- Scanner Card -->
                 <a href="https://raw.githack.com/miguelcoxcaballero/scan/main/index.html" target="_blank" 
                     class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.3)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] no-underline cursor-pointer">
                     
@@ -207,7 +207,6 @@
                     </h3>
                 </a>
 
-                <!-- Wonderxam Card -->
                 <a href="https://raw.githack.com/miguelcoxcaballero/wonderxam/main/wonderxam.html" target="_blank" 
                     class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(124,58,237,0.4)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-purple-300 no-underline cursor-pointer">
                     
@@ -221,7 +220,6 @@
                     </h3>
                 </a>
 
-                <!-- Metro Studio Card -->
                 <a href="https://raw.githack.com/miguelcoxcaballero/metro-studio/main/metro.html" target="_blank" 
                     class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(26,115,232,0.4)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-blue-300 no-underline cursor-pointer">
                     
@@ -235,7 +233,6 @@
                     </h3>
                 </a>
 
-                <!-- Maps Card -->
                 <a href="https://raw.githack.com/miguelcoxcaballero/maps/main/maps.html" target="_blank" 
                     class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(64,140,80,0.5)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-[#408c50] no-underline cursor-pointer">
                     
@@ -250,7 +247,6 @@
                     </h3>
                 </a>
 
-                <!-- TypeTest Card -->
                 <a href="https://raw.githack.com/miguelcoxcaballero/TypeTest/main/TypeTest.html" target="_blank" 
                     class="group relative flex flex-col items-center justify-center bg-brand-typeTestBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.8)] shadow-[0_8px_20px_rgba(0,0,0,0.6)] border border-[#333] hover:border-brand-typeTestGreen/50 no-underline cursor-pointer">
                     
@@ -264,15 +260,12 @@
                     </h3>
                 </a>
 
-                <!-- Egg Timer Card -->
                 <a href="https://raw.githack.com/miguelcoxcaballero/eggtimer/main/egg.html" target="_blank" 
                     class="group relative flex flex-col items-center justify-center bg-brand-pomodoroBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-gray-300 no-underline cursor-pointer">
                     
                     <div class="mb-4 flex justify-center">
-                        <!-- Fried Egg SVG Icon (Smoother top, smaller yolk) -->
                         <svg class="w-[100px] h-[100px]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <title>Fried Egg Timer</title>
-                            <!-- Egg White -->
                             <path
                                 d="M50 92
                                    C 26 92, 18 70, 32 44
@@ -282,9 +275,7 @@
                                 stroke="#e0e0e0"
                                 stroke-width="2"
                             />
-                            <!-- Yolk -->
                             <circle cx="50" cy="60" r="14" fill="#FFC107"/>
-                            <!-- Red Pointer -->
                             <polygon points="50,45 55,60 45,60" fill="#cc0000"
                                      transform="translate(0, 5) rotate(15, 50, 55)" />
                         </svg>
@@ -294,7 +285,6 @@
                     </h3>
                 </a>
 
-                <!-- Politraumat Card -->
                 <a href="https://raw.githack.com/miguelcoxcaballero/politraumat/main/politraumat.html" target="_blank" 
                     class="group relative flex flex-col items-center justify-center bg-brand-poliBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-5px_rgba(0,0,0,0.9)] shadow-[0_10px_30px_rgba(0,0,0,0.35)] border border-[#223046] hover:border-[#2a3a4f] no-underline cursor-pointer">
                     
@@ -310,6 +300,19 @@
                     </h3>
                 </a>
 
+                <a href="https://raw.githack.com/miguelcoxcaballero/RendezPlan/main/main.html" target="_blank" 
+                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(22,163,74,0.4)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-green-300 no-underline cursor-pointer">
+                    
+                    <div class="mb-4 flex justify-center">
+                        <div class="w-24 h-24 bg-[#16a34a] rounded-[1.5rem] flex items-center justify-center text-white shadow-md transition-transform duration-300 group-hover:scale-110">
+                            <i class="fa-solid fa-bolt-lightning text-5xl"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-roboto text-[34px] leading-tight text-brand-googleDark font-normal tracking-tight">
+                        RendezPlan
+                    </h3>
+                </a>
+
             </div>
 
         </div>
@@ -321,7 +324,6 @@
                 <svg class="h-5 w-8 text-brand-copper" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="4">
                     <path d="M5 55 L50 10 L95 55" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <!-- FIXED: Changed font class and tracking class -->
                 <span class="font-logo text-xs text-brand-cream/40 tracking-tight">inhouse software &copy; 2025</span>
             </div>
             <div class="flex gap-10 items-center">
@@ -348,7 +350,6 @@
         const productsSection = document.getElementById('products');
         
         const productsHeader = document.getElementById('products-header');
-        const productCard = document.querySelector('#products a.group');
 
         // --- 1. SMART AUTO-SCROLL LOGIC (0.75x SPEED) ---
         let lastScrollTop = 0;
