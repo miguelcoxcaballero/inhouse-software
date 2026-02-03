@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Comfortaa:wght@300;400;700&family=Inter:wght@400;700&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Comfortaa:wght@300;400;700&family=Inter:wght@400;700&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 
@@ -34,6 +34,7 @@
                             pomodoroRed: '#cc0000', /* Matching the egg pointer */
                             pomodoroBg: '#ffffff', // White background for Pomodoro
                             rendezGreen: '#16a34a', // Added for RendezPlan
+                            notesOrange: '#E07A3C', // Added for Inhouse Notes
                         }
                     },
                     fontFamily: {
@@ -45,6 +46,7 @@
                         'roboto': ['"Roboto"', 'sans-serif'],
                         'inter': ['"Inter"', 'sans-serif'],
                         'mono': ['"Roboto Mono"', 'monospace'],
+                        'dm': ['"DM Sans"', 'sans-serif'],
                     },
                     backgroundImage: {
                         'nouveau-pattern': "url('data:image/svg+xml,%3Csvg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cpath d=\"M20 20.125c0-1.25.75-2.25 2-2.25s2 1 2 2.25-.75 2.25-2 2.25-2-1-2-2.25zM10 30.125c0-1.25.75-2.25 2-2.25s2 1 2 2.25-.75 2.25-2 2.25-2-1-2-2.25zM30 30.125c0-1.25.75-2.25 2-2.25s2 1 2 2.25-.75 2.25-2 2.25-2-1-2-2.25z\" fill=\"%23d97736\" fill-opacity=\"0.03\" fill-rule=\"evenodd\"/%3E%3C/svg%3E')"
@@ -207,6 +209,20 @@
                     </h3>
                 </a>
 
+                <!-- MOVED: Inhouse Notes (2nd Position) -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/inhousenotes/main/inhouse-notes.html" target="_blank"
+                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(224,122,60,0.4)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-[#E07A3C] no-underline cursor-pointer">
+
+                    <div class="mb-4 flex justify-center">
+                        <svg class="w-[84px] h-[84px]" viewBox="0 0 40 28" fill="none">
+                            <path d="M4 24 L20 8 L36 24" stroke="#E07A3C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-logo text-[34px] leading-tight text-[#1a1a1a] font-bold tracking-tight lowercase">
+                        inhouse notes
+                    </h3>
+                </a>
+
                 <a href="https://raw.githack.com/miguelcoxcaballero/wonderxam/main/wonderxam.html" target="_blank" 
                     class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(124,58,237,0.4)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-purple-300 no-underline cursor-pointer">
                     
@@ -313,7 +329,6 @@
                     </h3>
                 </a>
 
-                <!-- NEW BOX: SpeedRead -->
                 <a href="https://raw.githack.com/miguelcoxcaballero/speedread/main/index.html" target="_blank"
                     class="group relative flex flex-col items-center justify-center bg-[#f0f0f0] w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_#000] shadow-[5px_5px_0px_0px_#000] border-[3px] border-black no-underline cursor-pointer overflow-hidden">
                     
