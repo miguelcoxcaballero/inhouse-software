@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
 
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
     <script>
@@ -27,14 +26,14 @@
                             googleBlue: '#0b57d0',
                             googleDark: '#1f1f1f',
                             googleGray: '#444746',
-                            typeTestBg: '#141414', /* Darker background */
+                            typeTestBg: '#141414',
                             typeTestGreen: '#66BB6A',
                             poliBg: '#0b0f14',
                             poliText: '#e8ecf1',
-                            pomodoroRed: '#cc0000', /* Matching the egg pointer */
-                            pomodoroBg: '#ffffff', // White background for Pomodoro
-                            rendezGreen: '#16a34a', // Added for RendezPlan
-                            notesOrange: '#E07A3C', // Added for Inhouse Notes
+                            pomodoroRed: '#cc0000',
+                            pomodoroBg: '#ffffff',
+                            rendezGreen: '#16a34a',
+                            notesOrange: '#E07A3C',
                         }
                     },
                     fontFamily: {
@@ -137,7 +136,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0 flex items-center gap-3">
-                    <svg class="h-8 w-10 text-brand-copper" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="4">
+                    <svg class="h-8 w-10 text-brand-copper" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true">
                         <path d="M5 55 L50 10 L95 55" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span class="font-logo font-bold text-xl tracking-tight text-white lowercase ml-1">inhouse software</span>
@@ -152,7 +151,7 @@
             <div id="intro-scale-wrapper" class="relative z-10 text-center px-4 max-w-4xl mx-auto origin-center">
                 <div id="bg-light-caster"></div>
                 <div class="mx-auto w-48 h-32 mb-1 relative overflow-visible flex items-center justify-center z-10">
-                    <svg viewBox="0 0 100 60" class="w-full h-full drop-shadow-[0_0_20px_rgba(217,119,54,0.15)]">
+                    <svg viewBox="0 0 100 60" class="w-full h-full drop-shadow-[0_0_20px_rgba(217,119,54,0.15)]" aria-hidden="true">
                         <defs>
                             <linearGradient id="soft-shine-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                                 <stop offset="0%" stop-color="black" />
@@ -175,9 +174,10 @@
                         <span class="block">inhouse</span>
                         <span class="block">software</span>
                     </h1>
-                    <div id="scroll-prompt" class="text-brand-cream/30 mt-32 transition-opacity duration-500">
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
+                    <!-- Turned into a focusable, semantic button for improved keyboard accessibility -->
+                    <button id="scroll-prompt" aria-label="Scroll to products catalog" class="text-brand-cream/30 mt-32 transition-opacity duration-500 hover:text-brand-copper focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-copper rounded-full p-2 cursor-pointer">
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -196,11 +196,12 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-center justify-items-center">
 
-                <a href="https://raw.githack.com/miguelcoxcaballero/scan/main/index.html" target="_blank" 
-                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.3)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] no-underline cursor-pointer">
+                <!-- 1. Scanner -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/scan/main/index.html" target="_blank" rel="noopener noreferrer" 
+                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(255,255,255,0.3)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] no-underline cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-copper">
                     
                     <div class="mb-4 flex justify-center">
-                        <span class="material-symbols-rounded text-brand-copper" style="font-size: 84px;">
+                        <span class="material-symbols-rounded text-brand-copper" style="font-size: 84px;" aria-hidden="true">
                             document_scanner
                         </span>
                     </div>
@@ -209,12 +210,12 @@
                     </h3>
                 </a>
 
-                <!-- MOVED: Inhouse Notes (2nd Position) -->
-                <a href="https://miguelcoxcaballero.github.io/inhousenotes/" target="_blank"
-                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(224,122,60,0.4)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-[#E07A3C] no-underline cursor-pointer">
+                <!-- 2. Inhouse Notes -->
+                <a href="https://miguelcoxcaballero.github.io/inhousenotes/" target="_blank" rel="noopener noreferrer"
+                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(224,122,60,0.4)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-[#E07A3C] no-underline cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-[#E07A3C]">
 
                     <div class="mb-4 flex justify-center">
-                        <svg class="w-[84px] h-[84px]" viewBox="0 0 40 28" fill="none">
+                        <svg class="w-[84px] h-[84px]" viewBox="0 0 40 28" fill="none" aria-hidden="true">
                             <path d="M4 24 L20 8 L36 24" stroke="#E07A3C" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
@@ -223,11 +224,12 @@
                     </h3>
                 </a>
 
-                <a href="https://raw.githack.com/miguelcoxcaballero/wonderxam/main/wonderxam.html" target="_blank" 
-                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(124,58,237,0.4)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-purple-300 no-underline cursor-pointer">
+                <!-- 3. Wonderxam -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/wonderxam/main/wonderxam.html" target="_blank" rel="noopener noreferrer" 
+                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(124,58,237,0.4)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-purple-300 no-underline cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-purple-300">
                     
                     <div class="mb-4 flex justify-center">
-                        <span class="material-symbols-rounded text-[#7c3aed]" style="font-size: 84px;">
+                        <span class="material-symbols-rounded text-[#7c3aed]" style="font-size: 84px;" aria-hidden="true">
                             school
                         </span>
                     </div>
@@ -236,11 +238,12 @@
                     </h3>
                 </a>
 
-                <a href="https://raw.githack.com/miguelcoxcaballero/metro-studio/main/metro.html" target="_blank" 
-                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(26,115,232,0.4)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-blue-300 no-underline cursor-pointer">
+                <!-- 4. Metro Studio -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/metro-studio/main/metro.html" target="_blank" rel="noopener noreferrer" 
+                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(26,115,232,0.4)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-blue-300 no-underline cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300">
                     
                     <div class="mb-4 flex justify-center">
-                        <svg class="w-[84px] h-[84px] text-[#1a73e8]" viewBox="0 0 24 24" fill="currentColor">
+                        <svg class="w-[84px] h-[84px] text-[#1a73e8]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M17.8 4.8C16.07 3.74 14.12 3.5 12 3.5c-2.12 0-4.07.24-5.8 1.3C4.24 6.03 3.5 8.05 3.5 10.5v6c0 2.56 1.92 4.67 4.41 4.95L6.5 23h11l-1.41-1.55c2.49-.28 4.41-2.39 4.41-4.95v-6c0-2.45-.74-4.47-2.7-5.7zM7.5 17.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm11-6.5h-13V8h13v3zm-2 6.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
                         </svg>
                     </div>
@@ -249,11 +252,12 @@
                     </h3>
                 </a>
 
-                <a href="https://raw.githack.com/miguelcoxcaballero/maps/main/maps.html" target="_blank" 
-                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(64,140,80,0.5)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-[#408c50] no-underline cursor-pointer">
+                <!-- 5. Maps -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/maps/main/maps.html" target="_blank" rel="noopener noreferrer" 
+                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(64,140,80,0.5)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-[#408c50] no-underline cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-[#408c50]">
                     
                     <div class="mb-4 flex justify-center">
-                        <svg class="w-[84px] h-[84px] text-[#408c50]" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="w-[84px] h-[84px] text-[#408c50]" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M30 80 V50 A20 20 0 0 1 50 30 H80" />
                             <path d="M65 15 L80 30 L65 45" />
                         </svg>
@@ -263,11 +267,12 @@
                     </h3>
                 </a>
 
-                <a href="https://raw.githack.com/miguelcoxcaballero/TypeTest/main/TypeTest.html" target="_blank" 
-                    class="group relative flex flex-col items-center justify-center bg-brand-typeTestBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.8)] shadow-[0_8px_20px_rgba(0,0,0,0.6)] border border-[#333] hover:border-brand-typeTestGreen/50 no-underline cursor-pointer">
+                <!-- 6. TypeTest -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/TypeTest/main/TypeTest.html" target="_blank" rel="noopener noreferrer" 
+                    class="group relative flex flex-col items-center justify-center bg-brand-typeTestBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.8)] shadow-[0_8px_20px_rgba(0,0,0,0.6)] border border-[#333] hover:border-brand-typeTestGreen/50 no-underline cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-typeTestGreen/50">
                     
                     <div class="mb-4 flex justify-center">
-                        <span class="material-symbols-rounded text-brand-typeTestGreen drop-shadow-[0_0_8px_rgba(102,187,106,0.6)]" style="font-size: 84px;">
+                        <span class="material-symbols-rounded text-brand-typeTestGreen drop-shadow-[0_0_8px_rgba(102,187,106,0.6)]" style="font-size: 84px;" aria-hidden="true">
                             keyboard_alt
                         </span>
                     </div>
@@ -276,11 +281,12 @@
                     </h3>
                 </a>
 
-                <a href="https://raw.githack.com/miguelcoxcaballero/eggtimer/main/egg.html" target="_blank" 
-                    class="group relative flex flex-col items-center justify-center bg-brand-pomodoroBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-gray-300 no-underline cursor-pointer">
+                <!-- 7. Egg Timer -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/eggtimer/main/egg.html" target="_blank" rel="noopener noreferrer" 
+                    class="group relative flex flex-col items-center justify-center bg-brand-pomodoroBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-gray-300 no-underline cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-gray-300">
                     
                     <div class="mb-4 flex justify-center">
-                        <svg class="w-[100px] h-[100px]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-[100px] h-[100px]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <title>Fried Egg Timer</title>
                             <path
                                 d="M50 92
@@ -301,11 +307,12 @@
                     </h3>
                 </a>
 
-                <a href="https://raw.githack.com/miguelcoxcaballero/politraumat/main/politraumat.html" target="_blank" 
-                    class="group relative flex flex-col items-center justify-center bg-brand-poliBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-5px_rgba(0,0,0,0.9)] shadow-[0_10px_30px_rgba(0,0,0,0.35)] border border-[#223046] hover:border-[#2a3a4f] no-underline cursor-pointer">
+                <!-- 8. Politraumat -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/politraumat/main/politraumat.html" target="_blank" rel="noopener noreferrer" 
+                    class="group relative flex flex-col items-center justify-center bg-brand-poliBg w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-5px_rgba(0,0,0,0.9)] shadow-[0_10px_30px_rgba(0,0,0,0.35)] border border-[#223046] hover:border-[#2a3a4f] no-underline cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-[#2a3a4f]">
                     
                     <div class="mb-4 flex justify-center">
-                        <span class="material-symbols-rounded text-white" style="font-size: 84px;">
+                        <span class="material-symbols-rounded text-white" style="font-size: 84px;" aria-hidden="true">
                             style
                         </span>
                     </div>
@@ -316,12 +323,13 @@
                     </h3>
                 </a>
 
-                <a href="https://raw.githack.com/miguelcoxcaballero/RendezPlan/main/main.html" target="_blank" 
-                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(22,163,74,0.4)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-green-300 no-underline cursor-pointer">
+                <!-- 9. RendezPlan -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/RendezPlan/main/main.html" target="_blank" rel="noopener noreferrer" 
+                    class="group relative flex flex-col items-center justify-center bg-white w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(22,163,74,0.4)] shadow-[0_1px_3px_0_rgba(0,0,0,0.3),0_4px_8px_3px_rgba(0,0,0,0.15)] border border-gray-100 hover:border-green-300 no-underline cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-green-300">
                     
                     <div class="mb-4 flex justify-center">
                         <div class="w-24 h-24 bg-[#16a34a] rounded-[1.5rem] flex items-center justify-center text-white shadow-md transition-transform duration-300 group-hover:scale-110">
-                            <i class="fa-solid fa-bolt-lightning text-5xl"></i>
+                            <i class="fa-solid fa-bolt-lightning text-5xl" aria-hidden="true"></i>
                         </div>
                     </div>
                     <h3 class="font-roboto text-[34px] leading-tight text-brand-googleDark font-normal tracking-tight">
@@ -329,14 +337,15 @@
                     </h3>
                 </a>
 
-                <a href="https://raw.githack.com/miguelcoxcaballero/speedread/main/index.html" target="_blank"
-                    class="group relative flex flex-col items-center justify-center bg-[#f0f0f0] w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_#000] shadow-[5px_5px_0px_0px_#000] border-[3px] border-black no-underline cursor-pointer overflow-hidden">
+                <!-- 10. SpeedRead -->
+                <a href="https://raw.githack.com/miguelcoxcaballero/speedread/main/index.html" target="_blank" rel="noopener noreferrer"
+                    class="group relative flex flex-col items-center justify-center bg-[#f0f0f0] w-full max-w-[320px] h-[320px] rounded-[2.5rem] p-8 text-center transition-all duration-300 transform hover:-translate-y-2 hover:shadow-[8px_8px_0px_0px_#000] shadow-[5px_5px_0px_0px_#000] border-[3px] border-black no-underline cursor-pointer overflow-hidden focus:outline-none focus-visible:ring-4 focus-visible:ring-black">
                     
                     <!-- Neo-brutalist accent -->
                     <div class="absolute top-0 right-0 w-24 h-24 bg-[#ffff00] rounded-bl-full border-l-[3px] border-b-[3px] border-black z-0 group-hover:scale-110 transition-transform"></div>
 
                     <div class="mb-4 flex justify-center z-10">
-                        <span class="material-symbols-rounded text-[#ff90e8] drop-shadow-[3px_3px_0_#000]" style="font-size: 84px; -webkit-text-stroke: 1px black; font-weight: 700;">
+                        <span class="material-symbols-rounded text-[#ff90e8] drop-shadow-[3px_3px_0_#000]" style="font-size: 84px; -webkit-text-stroke: 1px black; font-weight: 700;" aria-hidden="true">
                             speed
                         </span>
                     </div>
@@ -354,17 +363,17 @@
     <footer id="contact" class="bg-brand-black py-12 relative z-20 reveal-section w-full border-t border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="flex items-center gap-3">
-                <svg class="h-5 w-8 text-brand-copper" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="4">
+                <svg class="h-5 w-8 text-brand-copper" viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true">
                     <path d="M5 55 L50 10 L95 55" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <span class="font-logo text-xs text-brand-cream/40 tracking-tight">inhouse software &copy; 2025</span>
             </div>
             <div class="flex gap-10 items-center">
-                <a href="https://instagram.com/miguelcoxcaballero" target="_blank" class="group flex items-center gap-2 text-brand-cream/40 hover:text-brand-copper transition-colors text-xs uppercase tracking-widest">
-                    <i class="fab fa-instagram text-lg group-hover:scale-110 transition-transform"></i> Instagram
+                <a href="https://instagram.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2 text-brand-cream/40 hover:text-brand-copper transition-colors text-xs uppercase tracking-widest focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-copper rounded px-1">
+                    <i class="fab fa-instagram text-lg group-hover:scale-110 transition-transform" aria-hidden="true"></i> Instagram
                 </a>
-                <a href="https://github.com/miguelcoxcaballero" target="_blank" class="group flex items-center gap-2 text-brand-cream/40 hover:text-brand-copper transition-colors text-xs uppercase tracking-widest">
-                    <i class="fab fa-github text-lg group-hover:scale-110 transition-transform"></i> GitHub
+                <a href="https://github.com/miguelcoxcaballero" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-2 text-brand-cream/40 hover:text-brand-copper transition-colors text-xs uppercase tracking-widest focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-copper rounded px-1">
+                    <i class="fab fa-github text-lg group-hover:scale-110 transition-transform" aria-hidden="true"></i> GitHub
                 </a>
             </div>
         </div>
@@ -381,7 +390,6 @@
         const introWrapper = document.getElementById('intro-wrapper');
         const bgLightCaster = document.getElementById('bg-light-caster');
         const productsSection = document.getElementById('products');
-        
         const productsHeader = document.getElementById('products-header');
 
         // --- 1. SMART AUTO-SCROLL LOGIC (0.75x SPEED) ---
@@ -413,7 +421,19 @@
 
             requestAnimationFrame(animation);
         }
+
+        // Click handler for the scroll prompt button
+        scrollPrompt.addEventListener('click', () => {
+            const navHeight = 80;
+            const breathingRoom = 40;
+            const elementPosition = productsHeader.getBoundingClientRect().top + window.scrollY;
+            const destination = elementPosition - navHeight - breathingRoom;
+            
+            isAutoScrolling = true;
+            smoothScrollTo(destination, 1600);
+        });
         
+        // Passively handle scroll to prevent touch scroll-jacking warnings on Chrome/iOS
         window.addEventListener('scroll', () => {
             const currentScroll = window.scrollY;
             const threshold = 10; 
@@ -431,9 +451,9 @@
                 }
             }
             lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-        });
+        }, { passive: true });
 
-        // --- FLUID WAVE ANIMATION SETUP ---
+        // --- 2. FLUID WAVE ANIMATION SETUP ---
         const ctx = waveCanvas.getContext('2d');
         let width, height;
         let waves = [];
@@ -499,17 +519,19 @@
 
         initWaves();
         drawWaves();
-        window.addEventListener('resize', initWaves);
+        window.addEventListener('resize', initWaves, { passive: true });
 
-        // --- INTRO REVEAL ---
+        // --- 3. INTRO REVEAL ---
         window.addEventListener('load', () => {
             setTimeout(() => {
                 heroContent.classList.add('visible');
             }, 100);
         });
 
-        // --- SCROLL ANIMATION VISUALS ---
-        window.addEventListener('scroll', () => {
+        // --- 4. SCROLL ANIMATION VISUALS (Optimized with requestAnimationFrame) ---
+        let scrollTickerActive = false;
+
+        function updateScrollVisuals() {
             const scrollY = window.scrollY;
             const totalDistance = (introWrapper.offsetHeight - window.innerHeight) || 1;
             const progress = Math.min(Math.max(scrollY / totalDistance, 0), 1);
@@ -585,7 +607,16 @@
                 }
                 scrollPrompt.style.opacity = '0';
             }
-        });
+
+            scrollTickerActive = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!scrollTickerActive) {
+                requestAnimationFrame(updateScrollVisuals);
+                scrollTickerActive = true;
+            }
+        }, { passive: true });
     </script>
 </body>
 </html>
