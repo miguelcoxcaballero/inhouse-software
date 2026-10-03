@@ -1,0 +1,13 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.inhouse.cook'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'com.inhouse.cook'
+        minSdk 24
+        targetSdk 35
+        versionCode 1
+        versionName '1.0.0'
+    }
+}
