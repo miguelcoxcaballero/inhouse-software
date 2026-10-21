@@ -605,9 +605,76 @@ window.INHOUSE_APPS = [
  },
  {
   "id": "scanner",
+  "pre": "",
+  "name": "Scanner",
   "full": "Scanner",
+  "repo": "scan",
+  "apk": false,
+  "platforms": [
+   "Web"
+  ],
+  "bg": "#fff4ec",
+  "fg": "#5a2e10",
+  "icon": {
+   "sym": "document_scanner",
+   "bg": "#ffffff",
+   "fg": "#d97736"
+  },
   "url": "https://raw.githack.com/miguelcoxcaballero/scan/main/index.html",
-  "redirect": true
+  "tag": "Escanea documentos",
+  "lead": "Hojas fotografiadas que salen rectas y en PDF.",
+  "desc": [
+   "Te descargas una plantilla con un marco amarillo, la imprimes y escribes o dibujas dentro. Después le haces una foto, o la eliges de la galería, y Scanner busca el marco y endereza la hoja aunque la foto esté torcida.",
+   "Puedes meter varias páginas en el mismo documento, ordenarlas, recortar a mano si hace falta y ver la hoja con la cuadrícula de puntos. Cuando acabas, lo exportas todo en un PDF.",
+   "Funciona en el navegador y las fotos no salen de tu dispositivo."
+  ],
+  "orientation": "portrait",
+  "shots": [
+   [
+    "01.webp",
+    "Inicio"
+   ],
+   [
+    "02.webp",
+    "Nombre del documento"
+   ],
+   [
+    "03.webp",
+    "Cámara o galería"
+   ],
+   [
+    "04.webp",
+    "Detecta el marco"
+   ],
+   [
+    "05.webp",
+    "Hoja enderezada"
+   ],
+   [
+    "06.webp",
+    "Otra página"
+   ],
+   [
+    "07.webp",
+    "Recortar a mano"
+   ],
+   [
+    "08.webp",
+    "Tus páginas"
+   ],
+   [
+    "09.webp",
+    "Modo oscuro"
+   ],
+   [
+    "10.webp",
+    "PDF descargado"
+   ]
+  ],
+  "facts": {
+   "Idioma": "Inglés",
+   "Necesita": "La plantilla impresa"
+  }
  },
  {
   "id": "wonderxam",
