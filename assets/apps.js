@@ -531,9 +531,77 @@ window.INHOUSE_APPS = [
  },
  {
   "id": "apkbuilder",
+  "pre": "inhouse",
+  "name": "apk builder",
   "full": "Inhouse APK Builder",
+  "repo": "inhouse-apkbuilder",
+  "apk": false,
+  "platforms": [
+   "Windows"
+  ],
+  "bg": "#f2f4f7",
+  "fg": "#2c3b52",
+  "icon": {
+   "sym": "android",
+   "bg": "#ffffff",
+   "fg": "#526885"
+  },
   "url": "https://github.com/miguelcoxcaballero/inhouse-apkbuilder",
-  "redirect": true
+  "tag": "HTML a APK",
+  "lead": "Convierte una web en HTML en una app de Android.",
+  "desc": [
+   "Eliges el archivo HTML de tu web, le pones nombre, identificador de paquete, versión e icono, y pulsas Build APK. El programa monta el proyecto con Capacitor y lo compila con Gradle, y en el registro ves cada paso.",
+   "Puede firmar la APK con tu propia clave o crear una si no la tienes, añadir permisos de internet o de ubicación y copiar los archivos que acompañan a la web. Si el identificador de paquete no es válido, te avisa antes de empezar.",
+   "Es un programa de escritorio en Python. En Windows se abre con doble clic en el .bat."
+  ],
+  "orientation": "landscape",
+  "shots": [
+   [
+    "01.webp",
+    "Listo para compilar"
+   ],
+   [
+    "02.webp",
+    "Firma de la APK"
+   ],
+   [
+    "03.webp",
+    "Comprobar requisitos"
+   ],
+   [
+    "04.webp",
+    "Añadiendo Android"
+   ],
+   [
+    "05.webp",
+    "Compilando"
+   ],
+   [
+    "06.webp",
+    "Registro de Gradle"
+   ],
+   [
+    "07.webp",
+    "APK terminada"
+   ],
+   [
+    "08.webp",
+    "Registro final"
+   ],
+   [
+    "09.webp",
+    "Aviso de paquete"
+   ],
+   [
+    "10.webp",
+    "Otro proyecto"
+   ]
+  ],
+  "facts": {
+   "Idioma": "Inglés",
+   "Necesita": "Python, Java y el SDK de Android"
+  },
+  "openLabel": "Ver en GitHub"
  },
  {
   "id": "scanner",
@@ -543,9 +611,76 @@ window.INHOUSE_APPS = [
  },
  {
   "id": "wonderxam",
+  "pre": "",
+  "name": "Wonderxam",
   "full": "Wonderxam",
-  "url": "https://github.com/miguelcoxcaballero/wonderxam",
-  "redirect": true
+  "repo": "wonderxam",
+  "apk": false,
+  "platforms": [
+   "Web"
+  ],
+  "bg": "#f4efff",
+  "fg": "#3b1d77",
+  "icon": {
+   "sym": "school",
+   "bg": "#ffffff",
+   "fg": "#7c3aed"
+  },
+  "url": "https://raw.githack.com/miguelcoxcaballero/wonderxam/main/index.html",
+  "tag": "Exámenes en papel",
+  "lead": "Prepara exámenes listos para imprimir.",
+  "desc": [
+   "Sirve para preparar exámenes en papel. Escribes la cabecera del centro, las preguntas y las opciones, y la hoja se maqueta sola como un examen listo para imprimir.",
+   "Hay preguntas tipo test, de respuesta corta y de verdadero o falso, además de bloques de texto, imágenes y líneas separadoras. Puedes cambiar la tipografía, incluida una pensada para la dislexia, y descargar el examen en PDF.",
+   "Los exámenes se guardan en carpetas de tu Google Drive, que puedes mover y pintar de colores."
+  ],
+  "orientation": "landscape",
+  "shots": [
+   [
+    "01.webp",
+    "Tus exámenes"
+   ],
+   [
+    "02.webp",
+    "Editor del examen"
+   ],
+   [
+    "03.webp",
+    "Preguntas tipo test"
+   ],
+   [
+    "04.webp",
+    "Verdadero o falso"
+   ],
+   [
+    "05.webp",
+    "Tipografía"
+   ],
+   [
+    "06.webp",
+    "Nuevo examen"
+   ],
+   [
+    "07.webp",
+    "Color de carpeta"
+   ],
+   [
+    "08.webp",
+    "Mover a una carpeta"
+   ],
+   [
+    "09.webp",
+    "Dentro de una carpeta"
+   ],
+   [
+    "10.webp",
+    "Papelera"
+   ]
+  ],
+  "facts": {
+   "Idioma": "Inglés",
+   "Necesita": "Cuenta de Google"
+  }
  },
  {
   "id": "metro",
