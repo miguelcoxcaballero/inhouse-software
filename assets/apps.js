@@ -134,9 +134,74 @@ window.INHOUSE_APPS = [
  },
  {
   "id": "read",
+  "pre": "inhouse",
+  "name": "read",
   "full": "Inhouse Read",
+  "repo": "inhouse-read",
+  "apk": true,
+  "platforms": [
+   "Web",
+   "Android"
+  ],
+  "bg": "#eff8f2",
+  "fg": "#1d3b2a",
+  "icon": {
+   "img": "assets/inhouse-read.png"
+  },
   "url": "https://miguelcoxcaballero.github.io/inhouse-read/",
-  "redirect": true
+  "tag": "Libros y PDF",
+  "lead": "Tus libros en una estantería, listos para leer.",
+  "desc": [
+   "Tus libros aparecen en una estantería de madera, con plantas que puedes cambiar de sitio. Los añades en EPUB o PDF desde el móvil o desde tu Google Drive, y a cada uno le puedes cambiar el lomo y la portada.",
+   "Al leer eliges el fondo, como papel, sepia o noche, la letra y el tamaño, y pasas las páginas tocando o deslizando. Tienes índice, marcadores, búsqueda dentro del libro y una voz que te lo lee en alto."
+  ],
+  "orientation": "portrait",
+  "shots": [
+   [
+    "01.webp",
+    "Tu estantería"
+   ],
+   [
+    "02.webp",
+    "Ficha del libro"
+   ],
+   [
+    "03.webp",
+    "Personaliza el lomo"
+   ],
+   [
+    "04.webp",
+    "La portada"
+   ],
+   [
+    "05.webp",
+    "Leyendo"
+   ],
+   [
+    "06.webp",
+    "Aspecto del texto"
+   ],
+   [
+    "07.webp",
+    "Modo noche"
+   ],
+   [
+    "08.webp",
+    "Índice y marcadores"
+   ],
+   [
+    "09.webp",
+    "Escúchalo"
+   ],
+   [
+    "10.webp",
+    "Cuenta y ajustes"
+   ]
+  ],
+  "facts": {
+   "Idioma": "Español",
+   "Formatos": "EPUB y PDF"
+  }
  },
  {
   "id": "photos",
