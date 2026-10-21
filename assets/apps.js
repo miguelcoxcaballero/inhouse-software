@@ -63,9 +63,74 @@ window.INHOUSE_APPS = [
  },
  {
   "id": "notes",
+  "pre": "inhouse",
+  "name": "notes",
   "full": "Inhouse Notes",
+  "repo": "inhousenotes",
+  "apk": true,
+  "platforms": [
+   "Web",
+   "Android"
+  ],
+  "bg": "#fff3ea",
+  "fg": "#3a2416",
+  "icon": {
+   "img": "assets/inhouse-notes.png"
+  },
   "url": "https://miguelcoxcaballero.github.io/inhousenotes/",
-  "redirect": true
+  "tag": "Notas y carpetas",
+  "lead": "Cuadernos a mano, ordenados en carpetas.",
+  "desc": [
+   "Es un cuaderno para escribir a mano, con el dedo o con un lápiz. Cada cuaderno es un PDF de hojas de puntos y los guardas en carpetas de colores, como en una estantería.",
+   "Tienes bolígrafos de varios colores, subrayador y una herramienta para seleccionar trazos y moverlos. Puedes añadir páginas, meter una foto o escanear una hoja, y cuando quieras lo exportas como PDF.",
+   "Se guarda en el dispositivo y, si inicias sesión, también en tu Google Drive."
+  ],
+  "orientation": "portrait",
+  "shots": [
+   [
+    "01.webp",
+    "Tus carpetas"
+   ],
+   [
+    "02.webp",
+    "Escribe a mano"
+   ],
+   [
+    "03.webp",
+    "Selecciona y mueve"
+   ],
+   [
+    "04.webp",
+    "Varias páginas"
+   ],
+   [
+    "05.webp",
+    "Dónde se guarda"
+   ],
+   [
+    "06.webp",
+    "Gestiona las páginas"
+   ],
+   [
+    "07.webp",
+    "Exporta a PDF"
+   ],
+   [
+    "08.webp",
+    "Dentro de una carpeta"
+   ],
+   [
+    "09.webp",
+    "Color de la carpeta"
+   ],
+   [
+    "10.webp",
+    "Nuevo cuaderno"
+   ]
+  ],
+  "facts": {
+   "Idioma": "Inglés"
+  }
  },
  {
   "id": "read",
