@@ -834,9 +834,70 @@ window.INHOUSE_APPS = [
  },
  {
   "id": "eggtimer",
+  "pre": "",
+  "name": "Egg Timer",
   "full": "Egg Timer",
+  "repo": "eggtimer",
+  "apk": false,
+  "platforms": [
+   "Web"
+  ],
+  "bg": "#fff6f4",
+  "fg": "#7a0f0f",
+  "icon": {
+   "svg": "<svg viewBox=\"0 0 100 100\" aria-hidden=\"true\"><path d=\"M50 92 C 26 92, 18 70, 32 44 C 40 26, 60 26, 68 44 C 82 70, 74 92, 50 92 Z\" fill=\"#fff\" stroke=\"#e0e0e0\" stroke-width=\"3\"/><circle cx=\"50\" cy=\"60\" r=\"14\" fill=\"#FFC107\"/></svg>",
+   "bg": "#ffffff",
+   "fg": "#cc0000"
+  },
   "url": "https://raw.githack.com/miguelcoxcaballero/eggtimer/main/egg.html",
-  "redirect": true
+  "tag": "Temporizador de cocina",
+  "lead": "El huevo de cocina de siempre, en el móvil.",
+  "desc": [
+   "Es un temporizador de cocina con forma de huevo, en 3D. Deslizas el dedo a izquierda o derecha para girarlo hasta los minutos que quieras, y al soltarlo empieza a contar.",
+   "Arriba ves el tiempo que queda y, cuando llega a cero, suena un timbre. No hay botones ni menús: solo el huevo."
+  ],
+  "orientation": "portrait",
+  "shots": [
+   [
+    "01.webp",
+    "Al abrirlo"
+   ],
+   [
+    "02.webp",
+    "Desliza para girar"
+   ],
+   [
+    "03.webp",
+    "Diez minutos"
+   ],
+   [
+    "04.webp",
+    "En marcha"
+   ],
+   [
+    "05.webp",
+    "Cuarenta y cinco"
+   ],
+   [
+    "06.webp",
+    "Cuenta atrás"
+   ],
+   [
+    "07.webp",
+    "Suena al acabar"
+   ],
+   [
+    "08.webp",
+    "Un minuto"
+   ],
+   [
+    "09.webp",
+    "Tres minutos"
+   ]
+  ],
+  "facts": {
+   "Idioma": "Inglés"
+  }
  },
  {
   "id": "politraumat",
