@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inhouse Software</title>
+    <meta name="description" content="Una app de Inhouse Software: qué hace, capturas, versión y novedades.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0">
+    <style>
+        :root { --cream: #f5f5f0; --copper: #d97736; --line: rgba(255,255,255,.09); --mute: rgba(245,245,240,.55); --bg: #fff8e6; --fg: #4a3306; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { background: #000; }
+        body { color: var(--cream); font-family: Lato, sans-serif; font-size: 15px; line-height: 1.55; overflow-x: hidden; }
+        a { color: inherit; text-decoration: none; }
+        :focus-visible { outline: 3px solid var(--copper); outline-offset: 3px; }
+
+        .nav { display: flex; align-items: center; gap: 14px; height: 64px; padding: 0 max(18px, 4vw); border-bottom: 1px solid rgba(217,119,54,.3); }
+        .nav .home { display: flex; align-items: center; gap: 12px; font-family: Comfortaa, sans-serif; font-weight: 700; font-size: 17px; color: #fff; text-transform: lowercase; }
+        .nav svg { width: 36px; height: 22px; color: var(--copper); }
+        .nav .back { margin-left: auto; font-family: Comfortaa, sans-serif; font-size: 13px; color: var(--mute); }
+        .nav .back:hover { color: var(--copper); }
+        .wrap { max-width: 1120px; margin: 0 auto; padding: 0 max(18px, 4vw); }
+
+        .ic { display: grid; place-items: center; flex-shrink: 0; width: var(--s); height: var(--s); border-radius: 22%; overflow: hidden; background: #fff; }
+        .ic img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .ic .material-symbols-rounded { font-size: calc(var(--s) * .56); line-height: 1; }
+        .ic svg { width: 60%; height: 60%; }
+
+        /* Colour band in the app's own colours, like its card in the catalog. */
+        .band { background: linear-gradient(135deg, var(--bg) 0%, #ffffff 140%); color: var(--fg); padding: 46px 0 170px; }
+        .dark .band { background: linear-gradient(135deg, var(--bg) 0%, #33373d 160%); }
+        .band.no-shots { padding-bottom: 46px; }
+        .band .row { display: flex; align-items: center; gap: 26px; }
+        .band .ic { --s: 116px; box-shadow: 0 10px 30px rgba(0,0,0,.15); }
+        .pre { display: block; font-family: Comfortaa, sans-serif; font-size: 14px; opacity: .55; }
+        h1 { font-family: Comfortaa, sans-serif; font-weight: 700; font-size: 44px; line-height: 1.05; text-transform: lowercase; }
+        .lead { font-size: 17px; opacity: .78; margin-top: 4px; }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+        .chips span { font-size: 12.5px; padding: 3px 10px; border-radius: 99px; background: color-mix(in srgb, var(--fg) 9%, transparent); }
+        .acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 46px; padding: 0 24px; border-radius: 999px; font-weight: 700; font-size: 15px; white-space: nowrap; transition: transform .2s, opacity .2s; }
+        .btn:hover { transform: translateY(-1px); }
+        .btn.pri { background: var(--fg); color: var(--bg); }
+        .btn.sec { border: 1px solid color-mix(in srgb, var(--fg) 30%, transparent); color: var(--fg); }
+        .btn small { font-weight: 400; opacity: .7; font-size: 12.5px; }
+        .btn[aria-disabled="true"] { opacity: .45; pointer-events: none; }
+
+        .strip { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; margin-top: -130px; padding: 0 max(18px, calc((100vw - 1120px) / 2 + max(18px, 4vw))) 14px; scroll-padding: 0 max(18px, calc((100vw - 1120px) / 2 + max(18px, 4vw))); scrollbar-width: thin; scrollbar-color: #444 transparent; }
+        .shot { flex-shrink: 0; scroll-snap-align: start; border-radius: 20px; overflow: hidden; background: #111; box-shadow: 0 18px 40px rgba(0,0,0,.35); cursor: zoom-in; border: 0; padding: 0; }
+        .shot img { display: block; width: 100%; height: auto; }
+        .portrait .shot { width: 212px; }
+        .landscape .shot { width: 600px; border-radius: 14px; }
+        figure { display: grid; gap: 10px; flex-shrink: 0; scroll-snap-align: start; }
+        figcaption { font-family: Comfortaa, sans-serif; font-size: 13px; color: rgba(245,245,240,.72); text-align: center; }
+
+        .cols { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 44px; padding: 40px 0 80px; }
+        h2 { font-family: Comfortaa, sans-serif; font-weight: 700; font-size: 17px; color: #fff; margin-bottom: 12px; text-transform: lowercase; }
+        .desc p { color: rgba(245,245,240,.82); max-width: 62ch; }
+        .desc p + p { margin-top: 12px; }
+        .news { display: grid; gap: 16px; }
+        .news article { font-size: 14px; color: rgba(245,245,240,.82); }
+        .news b { display: block; font-family: Comfortaa, sans-serif; font-size: 12px; color: var(--copper); letter-spacing: .04em; margin-bottom: 2px; }
+        .facts div { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
+        .facts span:first-child { color: var(--mute); }
+        .facts span:last-child { text-align: right; }
+        .facts a { text-decoration: underline; text-decoration-color: rgba(217,119,54,.5); text-underline-offset: 3px; }
+        .src { margin-top: 12px; font-size: 12px; color: var(--mute); }
+        .wait { color: var(--mute); font-size: 14px; }
+        .missing { padding: 60px 0; text-align: center; color: var(--mute); }
+
+        /* Full-size screenshot viewer */
+        .viewer { position: fixed; inset: 0; z-index: 50; display: none; align-items: center; justify-content: center; background: rgba(0,0,0,.92); }
+        .viewer.open { display: flex; }
+        .viewer img { max-width: min(92vw, 1100px); max-height: 86vh; border-radius: 16px; }
+        .viewer button { position: absolute; width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); background: rgba(0,0,0,.4); color: #fff; font-size: 20px; cursor: pointer; }
+        .viewer .x { top: 18px; right: 18px; }
+        .viewer .prev { left: 18px; }
+        .viewer .next { right: 18px; }
+        .viewer .cap { position: absolute; bottom: 18px; left: 0; right: 0; text-align: center; font-family: Comfortaa, sans-serif; font-size: 14px; color: #ddd; }
+
+        footer { border-top: 1px solid rgba(255,255,255,.05); padding: 28px max(18px, 4vw); font-family: Comfortaa, sans-serif; font-size: 12px; color: rgba(245,245,240,.4); }
+
+        @media (max-width: 760px) {
+            body { font-size: 14.5px; }
+            .band { padding: 28px 0 150px; }
+            .band .row { align-items: flex-start; gap: 16px; }
+            .band .ic { --s: 76px; }
+            h1 { font-size: 30px; }
+            .lead { font-size: 15px; }
+            .acts .btn { flex: 1; padding: 0 12px; }
+            .portrait .shot { width: 56vw; }
+            .landscape .shot { width: 84vw; }
+            .strip { padding: 0 18px 12px; scroll-padding: 0 18px; }
+            .cols { grid-template-columns: 1fr; gap: 30px; padding: 28px 0 56px; }
+            .viewer .prev, .viewer .next { bottom: 50px; top: auto; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a class="home" href="./#products"><svg viewBox="0 0 100 60" fill="none" stroke="currentColor" stroke-width="5" aria-hidden="true"><path d="M5 55 L50 10 L95 55" stroke-linecap="round" stroke-linejoin="round"/></svg>inhouse software</a>
+        <a class="back" href="./#products">← Todas las apps</a>
+    </nav>
+    <main id="app"></main>
+    <div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="Captura">
+        <img alt="">
+        <div class="cap"></div>
+        <button class="x" type="button" aria-label="Cerrar">×</button>
+        <button class="prev" type="button" aria-label="Anterior">←</button>
+        <button class="next" type="button" aria-label="Siguiente">→</button>
+    </div>
+    <footer>inhouse software © 2026</footer>
+
+    <script src="assets/apps.js"></script>
+    <script>
+    (function () {
+        const OWNER = 'miguelcoxcaballero';
+        const root = document.getElementById('app');
+        const id = new URLSearchParams(location.search).get('id');
+        const app = (window.INHOUSE_APPS || []).find((a) => a.id === id);
+        const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const MONTHS = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sept', 'oct', 'nov', 'dic'];
+        const day = (iso) => { const d = new Date(iso); return isNaN(d) ? '' : d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear(); };
+        const size = (n) => n >= 1048576 ? (n / 1048576).toLocaleString('es-ES', { maximumFractionDigits: 0 }) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB';
+
+        // An app whose page is not ready yet sends the visitor straight to the app.
+        if (app && app.redirect) { location.replace(app.url); return; }
+        if (!app) {
+            root.innerHTML = '<div class="wrap missing">Esta app no existe. <a href="./#products" style="color:var(--copper)">Ver todas las apps</a></div>';
+            return;
+        }
+
+        document.title = app.full + ' · Inhouse Software';
+        document.documentElement.style.setProperty('--bg', app.bg);
+        document.documentElement.style.setProperty('--fg', app.fg);
+        if (app.dark) document.body.classList.add('dark');
+
+        const icon = app.icon.img ? '<span class="ic"><img src="' + esc(app.icon.img) + '" alt=""></span>'
+            : '<span class="ic" style="background:' + esc(app.icon.bg) + ';color:' + esc(app.icon.fg) + '">' + (app.icon.svg || '<span class="material-symbols-rounded" aria-hidden="true">' + esc(app.icon.sym) + '</span>') + '</span>';
+        const shots = app.shots || [];
+        const open = app.url ? '<a class="btn ' + (app.apk ? 'sec' : 'pri') + '" href="' + esc(app.url) + '" target="_blank" rel="noopener noreferrer">' + esc(app.openLabel || 'Abrir en la web') + ' ↗</a>' : '';
+        const apk = app.apk ? '<a class="btn pri" id="apk-btn" aria-disabled="true" href="https://github.com/' + OWNER + '/' + esc(app.repo) + '/releases" target="_blank" rel="noopener noreferrer">Descargar APK <small id="apk-size"></small></a>' : '';
+        const facts = Object.entries(app.facts || {}).map(([k, v]) => '<div><span>' + esc(k) + '</span><span>' + esc(v) + '</span></div>').join('');
+
+        root.innerHTML =
+            '<section class="band' + (shots.length ? '' : ' no-shots') + '"><div class="wrap">' +
+                '<div class="row">' + icon + '<div><h1>' + (app.pre ? '<span class="pre">' + esc(app.pre) + '</span>' : '') + esc(app.name) + '</h1>' +
+                '<p class="lead">' + esc(app.lead) + '</p>' +
+                '<div class="chips">' + (app.platforms || []).map((p) => '<span>' + esc(p) + '</span>').join('') + '<span id="chip-version" hidden></span><span>Gratis</span></div></div></div>' +
+                '<div class="acts">' + (app.apk ? apk + open : open) + '</div>' +
+            '</div></section>' +
+            (shots.length ? '<div class="strip ' + esc(app.orientation || 'portrait') + '" tabindex="0" aria-label="Capturas de ' + esc(app.full) + '">' +
+                shots.map((s, i) => '<figure><button class="shot" type="button" data-shot="' + i + '" aria-label="Ampliar: ' + esc(s[1]) + '"><img src="assets/apps/' + esc(app.id) + '/' + esc(s[0]) + '" alt="' + esc(s[1]) + '" loading="' + (i < 4 ? 'eager' : 'lazy') + '"></button><figcaption>' + esc(s[1]) + '</figcaption></figure>').join('') +
+            '</div>' : '') +
+            '<div class="wrap"><div class="cols">' +
+                '<div><h2>Qué hace</h2><div class="desc">' + app.desc.map((p) => '<p>' + esc(p) + '</p>').join('') + '</div></div>' +
+                '<div><h2>Novedades</h2><div class="news" id="news"><p class="wait">Consultando GitHub…</p></div></div>' +
+                '<div><h2>Detalles</h2><div class="facts" id="facts"><div id="facts-live"><span>Versión</span><span class="wait">…</span></div>' + facts +
+                    '<div><span>Código</span><span><a href="https://github.com/' + OWNER + '/' + esc(app.repo) + '" target="_blank" rel="noopener noreferrer">GitHub ↗</a></span></div></div>' +
+                    '<p class="src" id="src"></p></div>' +
+            '</div></div>';
+
+        // --- Screenshot viewer ---
+        const viewer = document.getElementById('viewer');
+        const vImg = viewer.querySelector('img');
+        let current = 0;
+        const show = (i) => { current = (i + shots.length) % shots.length; vImg.src = 'assets/apps/' + app.id + '/' + shots[current][0]; vImg.alt = shots[current][1]; viewer.querySelector('.cap').textContent = shots[current][1] + ' · ' + (current + 1) + '/' + shots.length; };
+        const close = () => { viewer.classList.remove('open'); const b = root.querySelector('[data-shot="' + current + '"]'); if (b) b.focus(); };
+        root.addEventListener('click', (e) => { const b = e.target.closest('[data-shot]'); if (!b) return; show(Number(b.dataset.shot)); viewer.classList.add('open'); viewer.querySelector('.x').focus(); });
+        viewer.addEventListener('click', (e) => { if (e.target === viewer) close(); });
+        viewer.querySelector('.x').onclick = close;
+        viewer.querySelector('.prev').onclick = () => show(current - 1);
+        viewer.querySelector('.next').onclick = () => show(current + 1);
+        document.addEventListener('keydown', (e) => {
+            if (!viewer.classList.contains('open')) return;
+            if (e.key === 'Escape') close();
+            if (e.key === 'ArrowLeft') show(current - 1);
+            if (e.key === 'ArrowRight') show(current + 1);
+        });
+
+        // --- Version, details and news, read live from GitHub ---
+        const factsLive = document.getElementById('facts-live');
+        const news = document.getElementById('news');
+        const src = document.getElementById('src');
+        const repoUrl = 'https://github.com/' + OWNER + '/' + app.repo;
+        const fail = () => {
+            if (factsLive.isConnected) setFacts([row('Versión', '<a href="' + esc(repoUrl) + '" target="_blank" rel="noopener noreferrer">Ver en GitHub ↗</a>')]);
+            news.innerHTML = '<p class="wait">No se ha podido consultar GitHub ahora mismo. <a href="' + esc(repoUrl) + '" target="_blank" rel="noopener noreferrer" style="color:var(--copper)">Ver el repositorio</a></p>';
+        };
+        const cached = async (key, url) => {
+            try { const hit = JSON.parse(sessionStorage.getItem(key) || 'null'); if (hit && Date.now() - hit.t < 10 * 60 * 1000) return hit.v; } catch (_) {}
+            const res = await fetch(url, { cache: 'no-cache' });
+            if (!res.ok) throw new Error(url + ' ' + res.status);
+            const v = await res.json();
+            try { sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), v })); } catch (_) {}
+            return v;
+        };
+        const row = (k, v) => '<div><span>' + esc(k) + '</span><span>' + v + '</span></div>';
+        const setFacts = (rows) => { factsLive.outerHTML = rows.join(''); };
+
+        // Android apps of the Inhouse updater publish their catalogs in updates/A.json (every
+        // release) and updates/B.json (reviewed releases). The page offers B when it has one.
+        async function fromCatalogs() {
+            const raw = (c) => 'https://raw.githubusercontent.com/' + OWNER + '/' + app.repo + '/main/updates/' + c + '.json';
+            const [a, b] = await Promise.all([cached('cat-A-' + app.repo, raw('A')), cached('cat-B-' + app.repo, raw('B')).catch(() => null)]);
+            const stable = b && b.latest;
+            const test = a && a.latest;
+            if (!test && !stable) throw new Error('empty catalogs');
+            const main = stable || test;
+            const newer = stable && test && test.versionCode > stable.versionCode;
+            const rows = [row('Versión', esc(main.version) + (stable ? '' : ' <span style="color:var(--mute)">(prueba)</span>'))];
+            if (newer) rows.push(row('Versión de prueba', esc(test.version)));
+            rows.push(row('Actualizada', esc(day((newer ? test : main).releasedAt))));
+            if (main.apkSizeBytes) rows.push(row('Tamaño (APK)', esc(size(main.apkSizeBytes))));
+            setFacts(rows);
+            const chip = document.getElementById('chip-version');
+            chip.textContent = main.version; chip.hidden = false;
+            const btn = document.getElementById('apk-btn');
+            if (btn && main.apkUrl && /^https:\/\/github\.com\//.test(main.apkUrl)) {
+                btn.href = main.apkUrl;
+                btn.removeAttribute('aria-disabled');
+                if (main.apkSizeBytes) document.getElementById('apk-size').textContent = size(main.apkSizeBytes);
+                if (!stable) btn.firstChild.textContent = 'Descargar APK de prueba ';
+            }
+            const releases = ((a && a.releases) || []).slice().sort((x, y) => y.versionCode - x.versionCode).slice(0, 3);
+            news.innerHTML = releases.map((r) => '<article><b>' + esc(r.version) + ' · ' + esc(day(r.releasedAt)) + '</b>' + esc(r.changelog) + '</article>').join('') || '<p class="wait">Sin novedades publicadas.</p>';
+            src.textContent = 'Datos de los catálogos de actualización en GitHub.';
+        }
+
+        // Web apps: the latest commits on the repository's default branch.
+        async function fromCommits() {
+            const list = await cached('commits-' + app.repo, 'https://api.github.com/repos/' + OWNER + '/' + app.repo + '/commits?per_page=15');
+            const commits = list.filter((c) => c.commit && !/^Merge (pull request|branch)/.test(c.commit.message));
+            if (!commits.length) throw new Error('no commits');
+            const rows = [];
+            if (app.manifest) {
+                try {
+                    const m = await cached('manifest-' + app.repo, 'https://raw.githubusercontent.com/' + OWNER + '/' + app.repo + '/HEAD/' + app.manifest);
+                    if (m && m.version) { rows.push(row('Versión', esc(m.version))); const chip = document.getElementById('chip-version'); chip.textContent = m.version; chip.hidden = false; }
+                } catch (_) {}
+            }
+            rows.push(row('Actualizada', esc(day(commits[0].commit.committer.date))));
+            setFacts(rows);
+            news.innerHTML = commits.slice(0, 3).map((c) => '<article><b>' + esc(day(c.commit.committer.date)) + '</b>' + esc(c.commit.message.split('\n')[0]) + '</article>').join('');
+            src.textContent = 'Últimos cambios del repositorio en GitHub.';
+        }
+
+        (app.apk ? fromCatalogs() : fromCommits()).catch(fail);
+    })();
+    </script>
+</body>
+</html>
